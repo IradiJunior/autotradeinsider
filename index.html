@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0c0e14" name="theme-color"/>
+<title>AutoTrader Insider • Sistema de Trading Automatizado</title>
+<meta content="Robot EA de trading totalmente automatizado. Acceso vitalicio, presets VIP, soporte para MT4 y MT5." name="description"/>
+<!-- Google Analytics GA4 -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DCSQS8BX0P"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DCSQS8BX0P', {
+      page_title: 'AutoTrader Insider — Acceso Vitalicio',
+      page_location: window.location.href
+    });
+  </script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','753942203733454',{});fbq('track','PageView');
+</script>
+<noscript><img height="1" src="https://www.facebook.com/tr?id=753942203733454&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&amp;display=swap" rel="stylesheet"/>
+<style>
+*{font-family:'Inter',sans-serif;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+.faq-item.active .faq-answer{max-height:300px;opacity:1;padding-top:1rem;padding-bottom:1rem}
+.faq-item.active .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;opacity:0;overflow:hidden;transition:all 0.35s ease}
+.faq-icon{transition:transform 0.3s ease}
+.glow{box-shadow:0 0 30px -8px rgba(59,130,246,0.35)}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px -8px rgba(59,130,246,0.3)}50%{box-shadow:0 0 40px -4px rgba(59,130,246,0.6)}}
+.pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-anim{display:flex;animation:marquee 22s linear infinite;white-space:nowrap}
+.gradient-dark-blue-black{background:linear-gradient(135deg,#0a1f4d 0%,#000 100%)}
+.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero-content{width:100%;max-width:720px;margin:0 auto;text-align:center}
+.hero-title-main{font-size:clamp(32px,8vw,80px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px}
+.hero-title-sub{font-size:clamp(20px,5vw,52px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:20px}
+.sec{padding:56px 20px}
+@media(min-width:768px){.sec{padding:88px 48px}}
+.sec+.sec{border-top:1px solid rgba(255,255,255,0.05)}
+.wrap-lg{max-width:1100px;margin:0 auto}
+.wrap-md{max-width:860px;margin:0 auto}
+.grid-steps{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:640px){.grid-steps{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.grid-steps{grid-template-columns:repeat(4,1fr)}}
+.grid-copytrade{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:768px){.grid-copytrade{grid-template-columns:1fr 1fr;align-items:center}}
+.dot-live{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:blink 1.4s ease-in-out infinite;display:inline-block}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.copytrade-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:18px;padding:22px}
+.btn-metallic{background:linear-gradient(135deg,#1a3a6b 0%,#0d2550 30%,#1e4080 55%,#0a1f45 80%,#162d5e 100%);box-shadow:0 2px 0 rgba(255,255,255,0.12) inset,0 -2px 0 rgba(0,0,0,0.4) inset,0 6px 24px -4px rgba(10,31,77,0.7),0 1px 3px rgba(0,0,0,0.5);border:1px solid rgba(100,160,255,0.18);position:relative;overflow:hidden;transition:transform 0.15s,box-shadow 0.2s}
+.btn-metallic::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.13),transparent);transform:skewX(-20deg);animation:shine 3s ease-in-out infinite}
+@keyframes shine{0%{left:-60%}60%{left:130%}100%{left:130%}}
+.btn-metallic:hover{transform:translateY(-2px);box-shadow:0 2px 0 rgba(255,255,255,0.15) inset,0 -2px 0 rgba(0,0,0,0.4) inset,0 10px 32px -4px rgba(20,50,120,0.8),0 1px 3px rgba(0,0,0,0.5)}
+.btn-metallic:active{transform:translateY(0)}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:15px;color:#9ca3af;font-weight:500}
+.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;background:rgba(12,14,20,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:12px}
+.sticky-nav-brand{font-size:15px;font-weight:800;letter-spacing:-0.01em;color:#f1f5f9;white-space:nowrap}
+.sticky-nav-brand span{color:#60a5fa}
+.sticky-nav-btns{display:flex;align-items:center;gap:8px}
+.btn-canal{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.28);color:#4ade80;font-size:13px;font-weight:700;padding:9px 14px;border-radius:10px;white-space:nowrap;transition:background 0.2s;text-decoration:none}
+.btn-canal:hover{background:rgba(34,197,94,0.18)}
+.btn-nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:9px 16px;border-radius:10px;white-space:nowrap;text-decoration:none;color:#fff}
+.btn-crypto{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,#0d2b1a 0%,#0a2016 35%,#133324 60%,#081a10 100%);color:#4ade80;border:1px solid rgba(74,222,128,.22);border-radius:12px;padding:18px 28px;font-size:15px;font-weight:700;box-shadow:0 2px 0 rgba(255,255,255,.06) inset,0 -2px 0 rgba(0,0,0,.4) inset,0 8px 28px rgba(34,197,94,.15);transition:.22s;position:relative;overflow:hidden;white-space:nowrap;cursor:pointer;font-family:inherit;text-decoration:none}
+.btn-crypto::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(74,222,128,.12),transparent);transform:skewX(-20deg);animation:shine 3.5s ease-in-out infinite}
+.btn-crypto:hover{transform:translateY(-2px);box-shadow:0 2px 0 rgba(255,255,255,.08) inset,0 -2px 0 rgba(0,0,0,.4) inset,0 12px 40px rgba(34,197,94,.28)}
+@media(max-width:480px){.sticky-nav-brand{font-size:12px;letter-spacing:0}.btn-canal{display:none}.btn-nav-cta{font-size:11px;padding:9px 13px}}
+@media(max-width:360px){.sticky-nav-brand{font-size:11px}.btn-nav-cta{font-size:10px;padding:8px 10px}}
+</style>
+</head>
+<body class="bg-[#0c0e14] text-gray-100 antialiased">
+<nav class="sticky-nav">
+<div class="sticky-nav-brand">AUTO<span>TRADER</span> INSIDER</div>
+<div class="sticky-nav-btns">
+<a class="btn-canal" href="https://t.me/+U-7QCvluBxgwMTRh" id="canalBtn" onclick="fbq('track','Lead',{content_name:'canal_nav',currency:'USD',value:5})" target="_blank">
+<svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"></path></svg>
+<span>Canal Gratis</span>
+</a>
+</div>
+</nav>
+<div class="w-full h-8 bg-[rgba(12,14,20,0.92)] backdrop-blur-sm border-b border-white/5 overflow-hidden flex items-center" style="margin-top:56px;">
+<div class="marquee-anim text-xs font-semibold tracking-widest">
+<span style="padding-right:3rem;color:#9ca3af;">Acceso Vitalicio</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#9ca3af;">Bot 100% Automatizado</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#9ca3af;">Forex · Oro · Cripto</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#9ca3af;">Acceso Vitalicio</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#9ca3af;">Bot 100% Automatizado</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+<span style="padding-right:3rem;color:#9ca3af;">Forex · Oro · Cripto</span>
+<span style="padding-right:1rem;color:rgba(255,255,255,0.12)">✦</span>
+</div>
+</div>
+<section class="sec relative overflow-hidden" id="hero">
+<div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="wrap-lg relative z-10" style="display:flex;justify-content:center;">
+<div class="hero-inner">
+<div class="hero-content">
+<h1 class="hero-title-main">AUTOTRADER INSIDER</h1>
+<p class="hero-title-sub"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">AUTOMATIZACIÓN ACTIVA EN CADA OPERACIÓN</span></p>
+<p class="text-sm sm:text-base text-gray-400 mb-8 leading-relaxed" style="max-width:500px;margin-left:auto;margin-right:auto;text-align:center;">Sistema de trading automatizado con configuración instantánea y soporte completo. Para quienes buscan velocidad, estrategia y simplicidad — sin emociones ni gráficos complejos.</p>
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;">
+<a class="inline-flex items-center gap-2 font-semibold px-6 py-4 rounded-xl text-base w-full justify-center pulse-glow" href="https://t.me/+U-7QCvluBxgwMTRh" id="heroCanalBtn" onclick="fbq('track','Lead',{content_name:'canal_hero',currency:'USD',value:5})" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;" target="_blank">
+<svg class="w-5 h-5 shrink-0" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"></path></svg>
+<span>Unirse al Canal — Gratis</span>
+</a>
+</div>
+<p class="text-xs text-gray-600 mt-4" style="text-align:center;">• Pago 100% Seguro • Soporte Total • Activación Inmediata tras comprobante •</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sec" id="how-it-works">
+<div class="wrap-lg">
+<h2 class="text-2xl sm:text-3xl font-bold text-center mb-2">GUÍA DE COMPRA FÁCIL</h2>
+<p class="text-gray-500 text-center text-sm mb-10">Sistema listo para operación automática en minutos.</p>
+<div class="grid-steps">
+<div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">1</div>
+<h3 class="font-semibold text-base">COMPLETA EL PAGO</h3>
+</div>
+<p class="text-sm text-gray-400">Obtén tu EA rápidamente a través del sitio o Telegram usando una plataforma de pago global completamente segura.</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">2</div>
+<h3 class="font-semibold text-base">ENVÍA TU COMPROBANTE</h3>
+</div>
+<p class="text-sm text-gray-400">Envía tu comprobante de pago directamente a nuestro chat de soporte en Telegram para agilizar la liberación de tu sistema.</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">3</div>
+<h3 class="font-semibold text-base">ACCESO INSTANTÁNEO</h3>
+</div>
+<p class="text-sm text-gray-400">Una vez procesado, recibes instantáneamente los archivos, todos los presets y acceso exclusivo a nuestro grupo privado.</p>
+</div>
+<div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">4</div>
+<h3 class="font-semibold text-base">DESCANSA Y RELÁJATE</h3>
+</div>
+<p class="text-sm text-gray-400">Solo relájate y observa cómo tus operaciones se ejecutan automáticamente en tiempo real.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sec relative overflow-hidden" id="lifetime-plan">
+<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,40,100,0.55) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 80% 100%,rgba(6,20,60,0.4) 0%,transparent 70%);"></div>
+<div class="wrap-md relative z-10">
+<div class="flex justify-center mb-6">
+<div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(180,130,40,0.15),rgba(220,170,60,0.08));border:1px solid rgba(200,160,50,0.3);border-radius:100px;padding:7px 20px;">
+<span style="width:7px;height:7px;background:#d4a017;border-radius:50%;display:inline-block;animation:blink 1.4s ease-in-out infinite;"></span>
+<span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d4a017;">Acceso Exclusivo • Disponibilidad Limitada</span>
+</div>
+</div>
+<div style="background:linear-gradient(135deg,rgba(15,28,70,0.9) 0%,rgba(8,16,45,0.95) 50%,rgba(12,22,60,0.9) 100%);border:1px solid rgba(80,120,220,0.2);border-radius:28px;padding:clamp(24px,5vw,48px) clamp(20px,5vw,40px);box-shadow:0 0 80px -20px rgba(30,70,200,0.25),0 2px 0 rgba(255,255,255,0.06) inset;position:relative;overflow:hidden;">
+<div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(100,150,255,0.4),transparent);"></div>
+<div style="text-align:center;">
+<h2 style="font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:8px;line-height:1.1;">ACCESO VITALICIO AHORA</h2>
+<p style="font-size:13px;color:#6b7280;margin-bottom:28px;letter-spacing:0.04em;">Un Pago · Sin Renovaciones · Acceso Inmediato</p>
+<div style="margin-bottom:6px;"><span style="font-size:clamp(44px,10vw,72px);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1;">US$ 200</span></div>
+<p style="font-size:13px;color:#6b7280;margin-bottom:32px;">Pago único · Sin Mensualidad</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:32px;">
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Archivos secretos del robot EA</span></div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Acceso a presets VIP</span></div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Guía de configuración</span></div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Actualizaciones futuras incluidas</span></div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Acceso al grupo privado</span></div>
+<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg fill="none" height="16" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="font-size:13px;color:#d1d5db;">Compatible MT4 y MT5</span></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:28px;">
+<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+<a class="btn-metallic pulse-glow" href="https://t.me/+U-7QCvluBxgwMTRh" onclick="fbq('track','Lead',{content_name:'canal_plan',currency:'USD',value:5})" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;color:#fff;font-weight:700;font-size:15px;padding:17px 28px;border-radius:13px;text-decoration:none;" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"></path></svg>
+<span>Unirse al Canal de Telegram</span>
+</a>
+</div>
+</div>
+<div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px 20px;">
+<div style="display:flex;align-items:flex-start;gap:12px;">
+<svg fill="none" height="18" stroke="#4b5563" stroke-width="1.8" style="flex-shrink:0;margin-top:2px;" viewbox="0 0 24 24" width="18"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<p style="font-size:12px;color:#4b5563;line-height:1.7;margin:0;">
+<strong style="color:#6b7280;display:block;margin-bottom:4px;">Cómo recibir tu acceso</strong>
+<span>Únete a nuestro canal de Telegram y habla con soporte para completar tu compra y recibir acceso en menos de 24 horas.</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec">
+<div class="wrap-md">
+<div class="grid-copytrade">
+<div>
+<span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase gradient-dark-blue-black text-blue-300 rounded-full mb-4">Alternativa</span>
+<h2 class="text-2xl sm:text-3xl font-bold mb-4">¿Prefieres Gestión de Cuenta?</h2>
+<p class="text-gray-400 leading-relaxed mb-6">También ofrecemos el modo <strong class="text-white">GESTIÓN DE CUENTAS</strong>. Abre una cuenta en el broker recomendado y activamos el sistema directamente en tu cuenta. Pagas solo <strong class="text-white">20% de las ganancias</strong> al retirar. Sin costo inicial.</p>
+<a class="inline-flex items-center gap-2 gradient-dark-blue-black border border-blue-500/30 hover:bg-blue-600/20 text-blue-300 font-semibold px-6 py-3 rounded-xl text-sm transition-all duration-300 w-full justify-center md:w-auto" href="https://t.me/+U-7QCvluBxgwMTRh" onclick="fbq('track','Lead',{content_name:'gestao_cta',currency:'USD',value:5})" target="_blank">
+<span>Únete a Telegram para Más Información</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+<div class="copytrade-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 gradient-dark-blue-black rounded-full flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">AM</div>
+<div>
+<p class="text-sm font-medium">Gestión de Cuenta</p>
+<p class="text-xs text-gray-500">Nuestra Operación Oficial</p>
+</div>
+</div>
+<div class="space-y-3 text-sm text-gray-400">
+<div class="flex justify-between border-b border-white/5 pb-2"><span>Cuenta</span><span class="text-gray-300 font-medium">AutoTrader Oficial</span></div>
+<div class="flex justify-between border-b border-white/5 pb-2"><span>Activos</span><span class="text-gray-300 font-medium">Múltiples activos</span></div>
+<div class="flex justify-between border-b border-white/5 pb-2"><span>Comisión</span><span class="text-gray-300 font-medium">20% sobre ganancias</span></div>
+<div class="flex justify-between"><span>Estilo</span><span class="text-gray-300 font-medium">Agresivo</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-5 py-16 md:py-20 border-t border-white/5">
+<div class="max-w-3xl mx-auto text-center">
+<div class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full mb-6">EXCLUSIVO</div>
+<h2 class="text-2xl sm:text-3xl font-bold mb-4">¿QUIERES SABER MÁS?</h2>
+<p class="text-gray-400 mb-8 max-w-xl mx-auto">Únete a nuestro grupo de Telegram y observa cómo opera el bot en vivo. Sin costo, sin compromiso.</p>
+<a class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-300 glow" href="https://t.me/+U-7QCvluBxgwMTRh" id="tgMidBtn" onclick="fbq('track','Lead',{content_name:'canal_mid',currency:'USD',value:5})" target="_blank">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+<span>Unirse a Telegram</span>
+</a>
+</div>
+</section>
+<section class="px-5 py-16 md:py-20 border-t border-white/5">
+<div class="max-w-5xl mx-auto">
+<p class="text-center text-xs font-bold tracking-widest uppercase text-blue-400 mb-3">POR QUÉ AUTOTRADER INSIDER</p>
+<h2 class="text-3xl sm:text-5xl font-extrabold text-center mb-5 leading-tight">DISEÑADO PARA<br/>TRADING AUTOMATIZADO</h2>
+<p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed mb-12 max-w-2xl mx-auto">AutoTrader Insider automatiza entradas, salidas y gestión de operaciones usando configuraciones predefinidas.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+<div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="4" width="18" x="3" y="3"></rect><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<h3 class="font-bold text-base text-white mb-3">EA Totalmente Automatizado</h3>
+<p class="text-sm text-gray-400 leading-relaxed">Funciona dentro de MetaTrader y ejecuta operaciones según tus configuraciones y presets elegidos.</p>
+</div>
+<div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+<div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+<h3 class="font-bold text-base text-white mb-3">Presets Listos para Usar</h3>
+<p class="text-sm text-gray-400 leading-relaxed">Accede a configuraciones VIP predefinidas para diferentes activos y estilos.</p>
+</div>
+<div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+<div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<h3 class="font-bold text-base text-white mb-3">Forex, Oro y Cripto</h3>
+<p class="text-sm text-gray-400 leading-relaxed">Compatible con múltiples mercados y activos según las configuraciones y condiciones de la plataforma.</p>
+</div>
+<div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+<div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<h3 class="font-bold text-base text-white mb-3">Herramientas de Gestión de Riesgo</h3>
+<p class="text-sm text-gray-400 leading-relaxed">Usa parámetros predefinidos, configuraciones de lote y controles de riesgo.</p>
+</div>
+</div>
+<div style="margin-top:44px;">
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+<a class="btn-metallic pulse-glow" href="https://t.me/+U-7QCvluBxgwMTRh" onclick="fbq('track','Lead',{content_name:'canal_why',currency:'USD',value:5})" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;color:#fff;font-weight:700;font-size:15px;padding:17px 28px;border-radius:13px;text-decoration:none;" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"></path></svg>
+<span>Unirse al Canal de Telegram</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-5 py-16 md:py-20 border-t border-white/5">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-2xl sm:text-3xl font-bold text-center mb-2">¿TODAVÍA OPERANDO MANUALMENTE?</h2>
+<p class="text-gray-500 text-center text-sm mb-10">Ve la diferencia en la práctica</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-px rounded-2xl overflow-hidden border border-white/10">
+<div class="bg-white/5 p-6 sm:p-8">
+<p class="text-sm font-semibold text-red-400 mb-5 flex items-center gap-2">
+<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span>Trader manual</span>
+</p>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-400">Pegado a los gráficos todo el día</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-400">Opera con emoción, pierde por rabia</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-400">Pierde oportunidades mientras duerme</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-400">Necesita meses de estudio previo</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-400">Resultados inconsistentes</span></div>
+</div>
+</div>
+<div class="bg-blue-950/40 p-6 sm:p-8 border-l border-white/5">
+<p class="text-sm font-semibold text-blue-400 mb-5 flex items-center gap-2">
+<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          AutoTrader Insider
+        </p>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-300">Opera 24/7 sin que lo vigiles</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-300">Sin emoción, 100% disciplinado</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-300">Captura oportunidades nocturnas</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-300">Activo en minutos, sin cursos</span></div>
+<div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="text-sm text-gray-300">Estrategia probada y automática</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-5 py-16 md:py-20 border-t border-white/5">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-2xl sm:text-3xl font-bold text-center mb-2">PREGUNTAS FRECUENTES</h2>
+<p class="text-gray-500 text-center text-sm mb-10">Todo lo que necesitas saber sobre el sistema automatizado</p>
+<div class="space-y-3">
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Necesito experiencia en trading?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed">No. Nuestra EA es fácil y automática. Si sabes encender un teléfono, ya sabes usarla.</div></div>
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Funciona en MT4 y MT5?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed">Sí, perfectamente. Solo indícanos tu plataforma preferida y te enviaremos la EA y presets compatibles.</div></div>
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Cuánto tiempo tarda la configuración?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed">Solo envíanos el comprobante de pago y comenzaremos el envío de inmediato.</div></div>
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Qué brokers son compatibles?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed">Los principales del mercado. Contáctanos en Telegram para recibir la lista completa.</div></div>
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Necesito mantener la computadora encendida?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed">No. Nuestra EA funciona en servidores en la nube vía VPS. Solo instálala y opera 24/7 automáticamente.</div></div>
+<div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span>¿Qué es la Gestión de Cuenta?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed"><span>Nuestra alternativa gratuita. Abre una cuenta en el broker recomendado, activamos el sistema. La comisión es del 20% sobre los resultados, cobrada solo al retirar.</span> <a href="https://t.me/+U-7QCvluBxgwMTRh" style="color:#60a5fa;text-decoration:underline;" target="_blank"> Más información aquí.</a></div></div>
+</div>
+</div>
+</section>
+<section class="px-5 py-20 md:py-28 border-t border-white/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center">
+<h2 class="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
+<span>ÚNETE A NUESTRA COMUNIDAD EN</span><br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">TELEGRAM</span>
+</h2>
+<p class="text-gray-400 max-w-lg mx-auto mb-8">Únete a Telegram y descubre lo simple que es usar nuestra EA.</p>
+<a class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-10 py-5 rounded-xl text-lg transition-all duration-300 glow" href="https://t.me/+U-7QCvluBxgwMTRh" id="tgFinalBtn" onclick="fbq('track','Lead',{content_name:'canal_final',currency:'USD',value:5})" target="_blank">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path></svg>
+<span>UNIRSE A TELEGRAM</span>
+</a>
+<p class="text-xs text-gray-600 mt-5">• Comunidad Activa • Posts Diarios • Tips y Estrategias •</p>
+</div>
+</section>
+<footer class="px-5 py-6 border-t border-white/5 text-center text-xs text-gray-600">
+<p class="max-w-2xl mx-auto leading-relaxed"><strong>Aviso de cumplimiento:</strong> Software de trading automatizado solo para fines educativos e informativos. El trading automatizado implica riesgos. Los resultados no están garantizados.</p>
+<p class="mt-3">© 2026 • AUTOTRADER INSIDER • Todos los derechos reservados.</p>
+</footer>
+<script>
+document.querySelectorAll('.faq-item').forEach(function(item){
+  item.querySelector('.faq-btn').addEventListener('click',function(){
+    var a=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('active');});
+    if(!a)item.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
