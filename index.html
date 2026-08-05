@@ -85,6 +85,41 @@ body{overflow-x:hidden}
 .lang-option.active{color:#60a5fa;background:rgba(96,165,250,0.08)}
 @media(max-width:480px){.sticky-nav-brand{font-size:12px;letter-spacing:0}.btn-canal{display:none}.btn-nav-cta{font-size:11px;padding:9px 13px}.lang-btn{font-size:11px;padding:6px 9px}.lang-label{display:none}}
 @media(max-width:360px){.sticky-nav-brand{font-size:11px}.btn-nav-cta{font-size:10px;padding:8px 10px}}
+
+/* ===== Motion system ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1);will-change:opacity,transform}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-scale{opacity:0;transform:scale(.94) translateY(18px);transition:opacity 1s cubic-bezier(.16,.8,.28,1),transform 1s cubic-bezier(.16,.8,.28,1);will-change:opacity,transform}
+.reveal-scale.in{opacity:1;transform:scale(1) translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
+.reveal-left.in{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
+.reveal-right.in{opacity:1;transform:translateX(0)}
+
+.tilt-card{transition:transform .5s cubic-bezier(.2,.9,.25,1),box-shadow .5s ease;transform-style:preserve-3d;will-change:transform}
+.tilt-card:hover{box-shadow:0 20px 50px -20px rgba(30,80,220,0.35)}
+
+.orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+@keyframes orb-drift-a{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-24px) scale(1.08)}}
+@keyframes orb-drift-b{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-26px,20px) scale(1.05)}}
+.orb-a{animation:orb-drift-a 13s ease-in-out infinite}
+.orb-b{animation:orb-drift-b 16s ease-in-out infinite}
+
+.hero-anim{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
+.hero-anim.in{opacity:1;transform:translateY(0)}
+
+.price-glow-ring{position:relative}
+.price-glow-ring::after{content:'';position:absolute;inset:-1px;border-radius:28px;padding:1px;background:linear-gradient(120deg,rgba(96,165,250,0.5),rgba(196,164,60,0.35),rgba(96,165,250,0.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .6s ease;pointer-events:none;background-size:200% 200%;animation:ring-sweep 6s linear infinite}
+.price-glow-ring:hover::after{opacity:1}
+@keyframes ring-sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+.faq-icon-pop{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal-scale,.reveal-left,.reveal-right,.hero-anim{opacity:1!important;transform:none!important;transition:none!important}
+  .orb-a,.orb-b,.pulse-glow,.btn-metallic::before,.btn-crypto::before,.marquee-anim,.ring-sweep,.price-glow-ring::after{animation:none!important}
+  .tilt-card{transition:none!important}
+}
 </style>
 </head>
 <body class="bg-[#0c0e14] text-gray-100 antialiased">
@@ -145,14 +180,15 @@ body{overflow-x:hidden}
 
 <section class="sec relative overflow-hidden" id="hero">
   <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
-  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="orb orb-a absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/5"></div>
+  <div class="orb orb-b absolute top-10 right-[8%] w-[260px] h-[260px] bg-purple-500/5"></div>
   <div class="wrap-lg relative z-10" style="display:flex;justify-content:center;">
     <div class="hero-inner">
       <div class="hero-content">
-        <h1 class="hero-title-main">AUTOTRADER INSIDER</h1>
-        <p class="hero-title-sub"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n="hero_sub">AUTOMAÇÃO ATIVA EM CADA OPERAÇÃO</span></p>
-        <p class="text-sm sm:text-base text-gray-400 mb-8 leading-relaxed" style="max-width:500px;margin-left:auto;margin-right:auto;text-align:center;" data-i18n="hero_desc">Sistema de trading automatizado com configuração instantânea e suporte completo. Feito para quem busca velocidade, estratégia e simplicidade — sem emoções, sem gráficos complexos. Ative o robô e deixe a tecnologia trabalhar por você.</p>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;">
+        <h1 class="hero-title-main hero-anim" style="transition-delay:.05s">AUTOTRADER INSIDER</h1>
+        <p class="hero-title-sub hero-anim" style="transition-delay:.18s"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n="hero_sub">AUTOMAÇÃO ATIVA EM CADA OPERAÇÃO</span></p>
+        <p class="text-sm sm:text-base text-gray-400 mb-8 leading-relaxed hero-anim" style="max-width:500px;margin-left:auto;margin-right:auto;text-align:center;transition-delay:.3s" data-i18n="hero_desc">Sistema de trading automatizado com configuração instantânea e suporte completo. Feito para quem busca velocidade, estratégia e simplicidade — sem emoções, sem gráficos complexos. Ative o robô e deixe a tecnologia trabalhar por você.</p>
+        <div class="hero-anim" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;transition-delay:.42s">
           <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" id="heroCanalBtn"
              class="inline-flex items-center gap-2 font-semibold px-6 py-4 rounded-xl text-base w-full justify-center pulse-glow"
              style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;"
@@ -161,7 +197,7 @@ body{overflow-x:hidden}
             <span data-i18n="join_free">Entrar no Canal — Grátis</span>
           </a>
         </div>
-        <p class="text-xs text-gray-600 mt-4" style="text-align:center;" data-i18n="hero_trust">• Pagamento 100% Seguro • Suporte Completo • Ativação Imediata após comprovante •</p>
+        <p class="text-xs text-gray-600 mt-4 hero-anim" style="text-align:center;transition-delay:.52s" data-i18n="hero_trust">• Pagamento 100% Seguro • Suporte Completo • Ativação Imediata após comprovante •</p>
       </div>
     </div>
   </div>
@@ -169,31 +205,31 @@ body{overflow-x:hidden}
 
 <section class="sec" id="how-it-works">
   <div class="wrap-lg">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2" data-i18n="how_title">GUIA DE COMPRA FÁCIL</h2>
-    <p class="text-gray-500 text-center text-sm mb-10" data-i18n="how_sub">Sistema pronto para operação automática em minutos.</p>
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 reveal" data-i18n="how_title">GUIA DE COMPRA FÁCIL</h2>
+    <p class="text-gray-500 text-center text-sm mb-10 reveal" data-i18n="how_sub">Sistema pronto para operação automática em minutos.</p>
     <div class="grid-steps">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">1</div>
           <h3 class="font-semibold text-base" data-i18n="step1_title">COMPLETE O PAGAMENTO</h3>
         </div>
         <p class="text-sm text-gray-400" data-i18n="step1_desc">Garanta sua EA rapidamente pelo site ou Telegram, usando uma plataforma de pagamento global totalmente segura.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">2</div>
           <h3 class="font-semibold text-base" data-i18n="step2_title">ENVIE SEU COMPROVANTE</h3>
         </div>
         <p class="text-sm text-gray-400" data-i18n="step2_desc">Envie seu comprovante de pagamento direto para nosso suporte no Telegram e agilize a liberação do seu sistema.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">3</div>
           <h3 class="font-semibold text-base" data-i18n="step3_title">ACESSO INSTANTÂNEO</h3>
         </div>
         <p class="text-sm text-gray-400" data-i18n="step3_desc">Assim que processado, você recebe na hora os arquivos, todos os presets e acesso exclusivo ao nosso grupo privado.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">4</div>
           <h3 class="font-semibold text-base" data-i18n="step4_title">RELAXE E DEIXE COM A GENTE</h3>
@@ -207,27 +243,27 @@ body{overflow-x:hidden}
 <section class="sec relative overflow-hidden" id="lifetime-plan">
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(14,40,100,0.55) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 80% 100%,rgba(6,20,60,0.4) 0%,transparent 70%);"></div>
   <div class="wrap-md relative z-10">
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-center mb-6 reveal">
       <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(180,130,40,0.15),rgba(220,170,60,0.08));border:1px solid rgba(200,160,50,0.3);border-radius:100px;padding:7px 20px;">
         <span style="width:7px;height:7px;background:#d4a017;border-radius:50%;display:inline-block;animation:blink 1.4s ease-in-out infinite;"></span>
         <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#d4a017;" data-i18n="badge">Acesso Exclusivo • Disponibilidade Limitada</span>
       </div>
     </div>
-    <div style="background:linear-gradient(135deg,rgba(15,28,70,0.9) 0%,rgba(8,16,45,0.95) 50%,rgba(12,22,60,0.9) 100%);border:1px solid rgba(80,120,220,0.2);border-radius:28px;padding:clamp(24px,5vw,48px) clamp(20px,5vw,40px);box-shadow:0 0 80px -20px rgba(30,70,200,0.25),0 2px 0 rgba(255,255,255,0.06) inset;position:relative;overflow:hidden;">
+    <div class="reveal-scale price-glow-ring tilt-card" style="background:linear-gradient(135deg,rgba(15,28,70,0.9) 0%,rgba(8,16,45,0.95) 50%,rgba(12,22,60,0.9) 100%);border:1px solid rgba(80,120,220,0.2);border-radius:28px;padding:clamp(24px,5vw,48px) clamp(20px,5vw,40px);box-shadow:0 0 80px -20px rgba(30,70,200,0.25),0 2px 0 rgba(255,255,255,0.06) inset;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(100,150,255,0.4),transparent);"></div>
       <div style="text-align:center;">
         <h2 style="font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:8px;line-height:1.1;" data-i18n="plan_title">ACESSO VITALÍCIO AGORA</h2>
         <p style="font-size:13px;color:#6b7280;margin-bottom:28px;letter-spacing:0.04em;" data-i18n="plan_sub">Pagamento Único · Sem Renovações · Acesso Imediato</p>
-        <div style="margin-bottom:6px;"><span style="font-size:clamp(44px,10vw,72px);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1;">US$ 200</span></div>
+        <div style="margin-bottom:6px;"><span style="font-size:clamp(44px,10vw,72px);font-weight:800;color:#fff;letter-spacing:-0.03em;line-height:1;">US$ <span id="priceCounter" data-target="200">0</span></span></div>
         <p style="font-size:13px;color:#6b7280;margin-bottom:32px;" data-i18n="plan_sub2">Pagamento único · Sem Mensalidades</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:32px;">
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc1">Arquivos secretos do robô EA</span></div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc2">Acesso aos presets VIP</span></div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc3">Orientação de configuração</span></div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc4">Atualizações futuras incluídas</span></div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc5">Acesso ao grupo privado</span></div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc6">Compatível com MT4 e MT5</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc1">Arquivos secretos do robô EA</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc2">Acesso aos presets VIP</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc3">Orientação de configuração</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc4">Atualizações futuras incluídas</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc5">Acesso ao grupo privado</span></div>
+        <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:10px;"><svg width="16" height="16" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:13px;color:#d1d5db;" data-i18n="inc6">Compatível com MT4 e MT5</span></div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:28px;">
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
@@ -253,7 +289,7 @@ body{overflow-x:hidden}
 <section class="sec">
   <div class="wrap-md">
     <div class="grid-copytrade">
-      <div>
+      <div class="reveal-left">
         <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase gradient-dark-blue-black text-blue-300 rounded-full mb-4" data-i18n="alt_badge">Alternativa</span>
         <h2 class="text-2xl sm:text-3xl font-bold mb-4" data-i18n="mgmt_title">Prefere Gestão de Conta?</h2>
         <p class="text-gray-400 leading-relaxed mb-6" data-i18n="mgmt_desc">Também oferecemos o modo <strong class="text-white">GESTÃO DE CONTA</strong>. Abra uma conta na corretora recomendada e ativamos o sistema diretamente na sua conta. Você paga apenas <strong class="text-white">20% dos lucros</strong> ao sacar. Sem custo inicial.</strong> mode. Open an account at our recommended broker and we activate the system directly on your account. You pay only <strong class="text-white">20% of profits</strong> when you withdraw. No upfront cost.</p>
@@ -262,7 +298,7 @@ body{overflow-x:hidden}
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
-      <div class="copytrade-card">
+      <div class="copytrade-card reveal-right tilt-card">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 gradient-dark-blue-black rounded-full flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">AM</div>
           <div>
@@ -282,7 +318,7 @@ body{overflow-x:hidden}
 </section>
 
 <section class="px-5 py-16 md:py-20 border-t border-white/5">
-  <div class="max-w-3xl mx-auto text-center">
+  <div class="max-w-3xl mx-auto text-center reveal-scale">
     <div class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full mb-6" data-i18n="excl_badge">EXCLUSIVO</div>
     <h2 class="text-2xl sm:text-3xl font-bold mb-4" data-i18n="tg_title">QUER SABER MAIS?</h2>
     <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-i18n="tg_desc">Entre no nosso grupo do Telegram e veja o robô operando ao vivo. Sem custo, sem compromisso.</p>
@@ -297,26 +333,26 @@ body{overflow-x:hidden}
 
 <section class="px-5 py-16 md:py-20 border-t border-white/5">
   <div class="max-w-5xl mx-auto">
-    <p class="text-center text-xs font-bold tracking-widest uppercase text-blue-400 mb-3" data-i18n="why_label">POR QUE AUTOTRADER INSIDER</p>
-    <h2 class="text-3xl sm:text-5xl font-extrabold text-center mb-5 leading-tight" data-i18n="why_title">FEITO PARA<br>TRADING AUTOMATIZADO</h2>
-    <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed mb-12 max-w-2xl mx-auto" data-i18n="why_desc">A AutoTrader Insider automatiza entradas, saídas e gestão de operações usando configurações predefinidas. Você recebe o robô mais os presets para começar a operar mais rápido, sem complicação nem meses de estudo.</p>
+    <p class="text-center text-xs font-bold tracking-widest uppercase text-blue-400 mb-3 reveal" data-i18n="why_label">POR QUE AUTOTRADER INSIDER</p>
+    <h2 class="text-3xl sm:text-5xl font-extrabold text-center mb-5 leading-tight reveal" data-i18n="why_title">FEITO PARA<br>TRADING AUTOMATIZADO</h2>
+    <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed mb-12 max-w-2xl mx-auto reveal" data-i18n="why_desc">A AutoTrader Insider automatiza entradas, saídas e gestão de operações usando configurações predefinidas. Você recebe o robô mais os presets para começar a operar mais rápido, sem complicação nem meses de estudo.</p>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
         <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg></div>
         <h3 class="font-bold text-base text-white mb-3" data-i18n="card1_title">EA Totalmente Automatizada</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card1_desc">Roda dentro do MetaTrader e executa operações com base nas configurações e presets de estratégia escolhidos.</p>
       </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
         <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h3 class="font-bold text-base text-white mb-3" data-i18n="card2_title">Presets Prontos para Usar</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card2_desc">Acesse configurações VIP predefinidas para diferentes ativos e estilos, incluindo opções mais conservadoras e mais agressivas.</p>
       </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
         <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div>
         <h3 class="font-bold text-base text-white mb-3" data-i18n="card3_title">Forex, Ouro e Cripto</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card3_desc">Feito para múltiplos mercados e ativos, conforme as configurações dos presets e as condições da plataforma.</p>
       </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300">
+      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
         <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
         <h3 class="font-bold text-base text-white mb-3" data-i18n="card4_title">Ferramentas de Gestão de Risco</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card4_desc">Use parâmetros predefinidos, configurações de lote e controles de risco. Os resultados sempre dependem das condições de mercado e da configuração.</p>
@@ -340,7 +376,7 @@ body{overflow-x:hidden}
     <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2" data-i18n="vs_title">AINDA OPERANDO MANUALMENTE?</h2>
     <p class="text-gray-500 text-center text-sm mb-10" data-i18n="vs_sub">Veja a diferença na prática</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-px rounded-2xl overflow-hidden border border-white/10">
-      <div class="bg-white/5 p-6 sm:p-8">
+      <div class="bg-white/5 p-6 sm:p-8 reveal-left">
         <p class="text-sm font-semibold text-red-400 mb-5 flex items-center gap-2">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 9l-6 6M9 9l6 6"/></svg>
           <span data-i18n="manual_label">Trader manual</span>
@@ -353,7 +389,7 @@ body{overflow-x:hidden}
           <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m5">Resultados inconsistentes</span></div>
         </div>
       </div>
-      <div class="bg-blue-950/40 p-6 sm:p-8 border-l border-white/5">
+      <div class="bg-blue-950/40 p-6 sm:p-8 border-l border-white/5 reveal-right">
         <p class="text-sm font-semibold text-blue-400 mb-5 flex items-center gap-2">
           <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
           AutoTrader Insider
@@ -372,22 +408,22 @@ body{overflow-x:hidden}
 
 <section class="px-5 py-16 md:py-20 border-t border-white/5">
   <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2" data-i18n="faq_title">PERGUNTAS FREQUENTES</h2>
-    <p class="text-gray-500 text-center text-sm mb-10" data-i18n="faq_sub">Tudo o que você precisa saber sobre o sistema automatizado</p>
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 reveal" data-i18n="faq_title">PERGUNTAS FREQUENTES</h2>
+    <p class="text-gray-500 text-center text-sm mb-10 reveal" data-i18n="faq_sub">Tudo o que você precisa saber sobre o sistema automatizado</p>
     <div class="space-y-3">
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq1q">Preciso ter experiência em trading?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq1a">Não. Nossa EA é fácil e automática. Se você sabe ligar um celular, já sabe usá-la.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq2q">Funciona no MT4 e no MT5?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq2a">Sim, perfeitamente. Basta nos informar sua plataforma preferida e enviaremos a EA e os presets compatíveis.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq3q">Quanto tempo leva a configuração?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq3a">Basta enviar o comprovante de pagamento que iniciamos a entrega imediatamente.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq4q">Quais corretoras são compatíveis?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq4a">As principais do mercado. Fale com a gente no Telegram para receber a lista completa.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq5q">Preciso deixar o computador ligado?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq5a">Não. Nossa EA roda em servidores na nuvem via VPS. Basta instalar e ela funciona 24/7 automaticamente.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq6q">O que é Gestão de Conta?</span><span class="faq-icon text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed"><span data-i18n="faq6a">Nossa alternativa gratuita. Você abre uma conta na corretora recomendada e nós ativamos o sistema. A taxa é de 20% sobre os resultados, cobrada apenas quando você saca.</span> <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" style="color:#60a5fa;text-decoration:underline;" data-i18n="learn_more"> Saiba mais aqui.</a></div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq1q">Preciso ter experiência em trading?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq1a">Não. Nossa EA é fácil e automática. Se você sabe ligar um celular, já sabe usá-la.</div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq2q">Funciona no MT4 e no MT5?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq2a">Sim, perfeitamente. Basta nos informar sua plataforma preferida e enviaremos a EA e os presets compatíveis.</div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq3q">Quanto tempo leva a configuração?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq3a">Basta enviar o comprovante de pagamento que iniciamos a entrega imediatamente.</div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq4q">Quais corretoras são compatíveis?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq4a">As principais do mercado. Fale com a gente no Telegram para receber a lista completa.</div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq5q">Preciso deixar o computador ligado?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq5a">Não. Nossa EA roda em servidores na nuvem via VPS. Basta instalar e ela funciona 24/7 automaticamente.</div></div>
+      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq6q">O que é Gestão de Conta?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed"><span data-i18n="faq6a">Nossa alternativa gratuita. Você abre uma conta na corretora recomendada e nós ativamos o sistema. A taxa é de 20% sobre os resultados, cobrada apenas quando você saca.</span> <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" style="color:#60a5fa;text-decoration:underline;" data-i18n="learn_more"> Saiba mais aqui.</a></div></div>
     </div>
   </div>
 </section>
 
 <section class="px-5 py-20 md:py-28 border-t border-white/5 relative overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent pointer-events-none"></div>
-  <div class="relative z-10 max-w-3xl mx-auto text-center">
+  <div class="relative z-10 max-w-3xl mx-auto text-center reveal-scale">
     <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
       <span data-i18n="final_title">JUNTE-SE À NOSSA COMUNIDADE NO</span><br>
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">TELEGRAM</span>
@@ -452,6 +488,86 @@ document.addEventListener('click',function(e){if(!document.getElementById('langS
     if(englishCountries.indexOf(d.country_code)>-1)applyLang('en');
     else if(spanishCountries.indexOf(d.country_code)>-1)applyLang('es');
   }).catch(function(){});
+})();
+
+/* ===== Motion engine: reveals, hero entrance, tilt, price counter ===== */
+(function(){
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero entrance — staged on load
+  function playHero(){
+    document.querySelectorAll('.hero-anim').forEach(function(el){
+      requestAnimationFrame(function(){ el.classList.add('in'); });
+    });
+  }
+  if(document.readyState==='complete') playHero();
+  else window.addEventListener('load',playHero);
+
+  if(reduceMotion){
+    document.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('in');});
+    return;
+  }
+
+  // Scroll reveals with per-parent stagger
+  var revealEls = document.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-right');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var el = entry.target;
+        var siblings = Array.prototype.filter.call(el.parentElement.children,function(c){
+          return c.classList.contains('reveal')||c.classList.contains('reveal-scale')||c.classList.contains('reveal-left')||c.classList.contains('reveal-right');
+        });
+        var idx = siblings.indexOf(el);
+        var delay = Math.min(idx,6)*0.09;
+        if(!el.style.transitionDelay || el.style.transitionDelay==='0s') el.style.transitionDelay = delay+'s';
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -6% 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // Tilt micro-interaction on cards
+  var tiltEls = document.querySelectorAll('.tilt-card');
+  tiltEls.forEach(function(card){
+    var raf=null;
+    card.addEventListener('mousemove',function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left)/r.width - 0.5;
+      var y = (e.clientY - r.top)/r.height - 0.5;
+      if(raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function(){
+        card.style.transform = 'perspective(900px) rotateX('+(-y*6)+'deg) rotateY('+(x*6)+'deg) translateY(-4px)';
+      });
+    });
+    card.addEventListener('mouseleave',function(){
+      if(raf) cancelAnimationFrame(raf);
+      card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
+    });
+  });
+
+  // Price counter — counts up once when the plan card enters view
+  var counter = document.getElementById('priceCounter');
+  if(counter){
+    var target = parseInt(counter.getAttribute('data-target'),10) || 0;
+    var countIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var start=null, duration=1100;
+          function step(ts){
+            if(!start) start=ts;
+            var p = Math.min((ts-start)/duration,1);
+            var eased = 1 - Math.pow(1-p,3);
+            counter.textContent = Math.round(eased*target);
+            if(p<1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          countIo.unobserve(counter);
+        }
+      });
+    },{threshold:0.4});
+    countIo.observe(counter);
+  }
 })();
 </script>
 </body>
