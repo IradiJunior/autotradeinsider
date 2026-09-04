@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -10,9 +10,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0c0e14">
-<title>AutoTrader Insider &bull; Sistema de Trading Automatizado</title>
-<meta name="description" content="Robô EA de trading totalmente automatizado. Acesso vitalício, presets VIP, suporte para MT4 e MT5.">
+<meta name="theme-color" content="#06080C">
+<title>AutoTrader Insider • Sistema de Trading Automatizado</title>
+<meta name="description" content="Sistema completo de trading automatizado para MT4 y MT5. EA, presets VIP, Copy Trade incluido. Acceso vitalicio pago único.">
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -22,476 +22,1423 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','753942203733454',{});fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=753942203733454&ev=PageView&noscript=1"/></noscript>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500;600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 <style>
-*{font-family:'Inter',sans-serif;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+/* ====== TOKENS ====== */
+:root{
+  --bg:#06080C;--bg2:#0B0E16;--bg3:#101520;
+  --surf:#111828;--surf2:#171E2E;
+  --bdr:rgba(255,255,255,0.06);--bdr2:rgba(255,255,255,0.10);
+  --bdr-gold:rgba(201,168,76,0.25);
+  --gold:#C9A84C;--gold-lt:#E4C878;--gold-dim:rgba(201,168,76,0.12);
+  --blue:#2A6BE4;--blue-glow:rgba(42,107,228,0.32);--blue-dim:rgba(42,107,228,0.10);
+  --green:#22C55E;--green-dim:rgba(34,197,94,0.10);--green-bdr:rgba(34,197,94,0.25);
+  --red:#F87171;--red-dim:rgba(248,113,113,0.08);
+  --txt:#DDE1ED;--txt2:#7C8499;--txt3:#3C4255;
+  --r:6px;--rl:8px;--rxl:14px;
+  --mono:'JetBrains Mono','Courier New',monospace;
+  --disp:'Barlow Condensed',sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+}
+
+/* ====== RESET ====== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{overflow-x:hidden}
-.faq-item.active .faq-answer{max-height:300px;opacity:1;padding-top:1rem;padding-bottom:1rem}
-.faq-item.active .faq-icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;opacity:0;overflow:hidden;transition:all 0.35s ease}
-.faq-icon{transition:transform 0.3s ease}
-.glow{box-shadow:0 0 30px -8px rgba(59,130,246,0.35)}
-@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px -8px rgba(59,130,246,0.3)}50%{box-shadow:0 0 40px -4px rgba(59,130,246,0.6)}}
-.pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.marquee-anim{display:flex;animation:marquee 22s linear infinite;white-space:nowrap}
-.gradient-dark-blue-black{background:linear-gradient(135deg,#0a1f4d 0%,#000 100%)}
-.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
-.hero-content{width:100%;max-width:720px;margin:0 auto;text-align:center}
-.hero-title-main{font-size:clamp(32px,8vw,80px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px}
-.hero-title-sub{font-size:clamp(20px,5vw,52px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;margin-bottom:20px}
-.sec{padding:56px 20px}
-@media(min-width:768px){.sec{padding:88px 48px}}
-.sec+.sec{border-top:1px solid rgba(255,255,255,0.05)}
-.wrap-lg{max-width:1100px;margin:0 auto}
-.wrap-md{max-width:860px;margin:0 auto}
-.grid-steps{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:640px){.grid-steps{grid-template-columns:1fr 1fr}}
-@media(min-width:1024px){.grid-steps{grid-template-columns:repeat(4,1fr)}}
-.grid-copytrade{display:grid;gap:24px;grid-template-columns:1fr}
-@media(min-width:768px){.grid-copytrade{grid-template-columns:1fr 1fr;align-items:center}}
-.dot-live{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:blink 1.4s ease-in-out infinite;display:inline-block}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-.copytrade-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:18px;padding:22px}
-.btn-metallic{background:linear-gradient(135deg,#1a3a6b 0%,#0d2550 30%,#1e4080 55%,#0a1f45 80%,#162d5e 100%);box-shadow:0 2px 0 rgba(255,255,255,0.12) inset,0 -2px 0 rgba(0,0,0,0.4) inset,0 6px 24px -4px rgba(10,31,77,0.7),0 1px 3px rgba(0,0,0,0.5);border:1px solid rgba(100,160,255,0.18);position:relative;overflow:hidden;transition:transform 0.15s,box-shadow 0.2s}
-.btn-metallic::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.13),transparent);transform:skewX(-20deg);animation:shine 3s ease-in-out infinite}
-@keyframes shine{0%{left:-60%}60%{left:130%}100%{left:130%}}
-.btn-metallic:hover{transform:translateY(-2px);box-shadow:0 2px 0 rgba(255,255,255,0.15) inset,0 -2px 0 rgba(0,0,0,0.4) inset,0 10px 32px -4px rgba(20,50,120,0.8),0 1px 3px rgba(0,0,0,0.5)}
-.btn-metallic:active{transform:translateY(0)}
-.trust-item{display:flex;align-items:center;gap:9px;font-size:15px;color:#9ca3af;font-weight:500}
-.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:50;height:56px;background:rgba(12,14,20,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:12px}
-.sticky-nav-brand{font-size:15px;font-weight:800;letter-spacing:-0.01em;color:#f1f5f9;white-space:nowrap}
-.sticky-nav-brand span{color:#60a5fa}
-.sticky-nav-btns{display:flex;align-items:center;gap:8px}
-.btn-canal{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.28);color:#4ade80;font-size:13px;font-weight:700;padding:9px 14px;border-radius:10px;white-space:nowrap;transition:background 0.2s;text-decoration:none}
-.btn-canal:hover{background:rgba(34,197,94,0.18)}
-.btn-nav-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:9px 16px;border-radius:10px;white-space:nowrap;text-decoration:none;color:#fff}
-.btn-crypto{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,#0d2b1a 0%,#0a2016 35%,#133324 60%,#081a10 100%);color:#4ade80;border:1px solid rgba(74,222,128,.22);border-radius:12px;padding:18px 28px;font-size:15px;font-weight:700;box-shadow:0 2px 0 rgba(255,255,255,.06) inset,0 -2px 0 rgba(0,0,0,.4) inset,0 8px 28px rgba(34,197,94,.15);transition:.22s;position:relative;overflow:hidden;white-space:nowrap;cursor:pointer;font-family:inherit;text-decoration:none}
-.btn-crypto::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(74,222,128,.12),transparent);transform:skewX(-20deg);animation:shine 3.5s ease-in-out infinite}
-.btn-crypto:hover{transform:translateY(-2px);box-shadow:0 2px 0 rgba(255,255,255,.08) inset,0 -2px 0 rgba(0,0,0,.4) inset,0 12px 40px rgba(34,197,94,.28)}
-.lang-selector{position:relative}
-.lang-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#9ca3af;font-size:13px;font-weight:600;padding:7px 12px;border-radius:9px;cursor:pointer;transition:.2s;font-family:inherit;white-space:nowrap}
-.lang-btn:hover{background:rgba(255,255,255,0.1);color:#fff}
-.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#111827;border:1px solid rgba(255,255,255,0.12);border-radius:12px;overflow:hidden;min-width:140px;box-shadow:0 8px 32px rgba(0,0,0,0.5);z-index:200}
-.lang-selector.open .lang-dropdown{display:block}
-.lang-option{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:13px;font-weight:500;color:#d1d5db;cursor:pointer;transition:.15s;border:none;background:none;width:100%;text-align:left;font-family:inherit}
-.lang-option:hover{background:rgba(255,255,255,0.07);color:#fff}
-.lang-option.active{color:#60a5fa;background:rgba(96,165,250,0.08)}
-@media(max-width:480px){.sticky-nav-brand{font-size:12px;letter-spacing:0}.btn-canal{display:none}.btn-nav-cta{font-size:11px;padding:9px 13px}.lang-btn{font-size:11px;padding:6px 9px}.lang-label{display:none}}
-@media(max-width:360px){.sticky-nav-brand{font-size:11px}.btn-nav-cta{font-size:10px;padding:8px 10px}}
+body{font-family:var(--body);background:var(--bg);color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer;border:none;background:none}
 
-/* ===== Motion system ===== */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1);will-change:opacity,transform}
-.reveal.in{opacity:1;transform:translateY(0)}
-.reveal-scale{opacity:0;transform:scale(.94) translateY(18px);transition:opacity 1s cubic-bezier(.16,.8,.28,1),transform 1s cubic-bezier(.16,.8,.28,1);will-change:opacity,transform}
-.reveal-scale.in{opacity:1;transform:scale(1) translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
-.reveal-left.in{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
-.reveal-right.in{opacity:1;transform:translateX(0)}
+/* ====== LAYOUT ====== */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.wrap-md{max-width:800px;margin:0 auto;padding:0 24px}
+.wrap-sm{max-width:640px;margin:0 auto;padding:0 24px}
+.sec{padding:124px 0}
+.sec+.sec{border-top:1px solid var(--bdr)}
 
-.tilt-card{transition:transform .5s cubic-bezier(.2,.9,.25,1),box-shadow .5s ease;transform-style:preserve-3d;will-change:transform}
-.tilt-card:hover{box-shadow:0 20px 50px -20px rgba(30,80,220,0.35)}
+/* ====== TICKER ====== */
+.ticker-wrap{position:fixed;top:0;left:0;right:0;z-index:100;height:30px;background:var(--bg2);border-bottom:1px solid var(--bdr);overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;align-items:center;white-space:nowrap;animation:ticker 32s linear infinite;will-change:transform}
+.ti{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:0 24px;color:var(--txt2);font-weight:500}
+.ti.g{color:var(--gold);font-weight:600}
+.ti.b{color:#6EA3F0;font-weight:600}
+.ti.s{color:var(--txt3);padding:0 8px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
-@keyframes orb-drift-a{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-24px) scale(1.08)}}
-@keyframes orb-drift-b{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-26px,20px) scale(1.05)}}
-.orb-a{animation:orb-drift-a 13s ease-in-out infinite}
-.orb-b{animation:orb-drift-b 16s ease-in-out infinite}
+/* ====== NAVBAR ====== */
+.nav{position:fixed;top:30px;left:0;right:0;z-index:99;height:54px;background:rgba(6,8,12,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:12px}
+.nav-brand{font-family:var(--disp);font-size:16px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--txt);white-space:nowrap}
+.nav-brand span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.lang-sel{position:relative}
+.lang-btn{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--bdr2);color:var(--txt2);font-size:12px;font-weight:600;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .2s,color .2s;font-family:var(--body);white-space:nowrap}
+.lang-btn:hover{background:var(--surf);color:var(--txt)}
+.lang-dd{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);overflow:hidden;min-width:140px;box-shadow:0 16px 48px rgba(0,0,0,.6);z-index:200}
+.lang-sel.open .lang-dd{display:block}
+.lang-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:13px;font-weight:500;color:var(--txt2);cursor:pointer;transition:background .15s,color .15s;background:none;width:100%;text-align:left;font-family:var(--body);border:none}
+.lang-opt:hover{background:var(--surf2);color:var(--txt)}
+.lang-opt.active{color:var(--gold)}
+.btn-nav{display:inline-flex;align-items:center;gap:7px;background:var(--green-dim);border:1px solid var(--green-bdr);color:var(--green);font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;white-space:nowrap;transition:background .2s}
+.btn-nav:hover{background:rgba(34,197,94,.18)}
+@media(max-width:480px){.nav{padding:0 14px}.lang-btn span.lbl{display:none}.btn-nav svg{display:none}}
 
-.hero-anim{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
-.hero-anim.in{opacity:1;transform:translateY(0)}
+/* ====== EYEBROW ====== */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--gold);opacity:.5}
 
-.price-glow-ring{position:relative}
-.price-glow-ring::after{content:'';position:absolute;inset:-1px;border-radius:28px;padding:1px;background:linear-gradient(120deg,rgba(96,165,250,0.5),rgba(196,164,60,0.35),rgba(96,165,250,0.5));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .6s ease;pointer-events:none;background-size:200% 200%;animation:ring-sweep 6s linear infinite}
-.price-glow-ring:hover::after{opacity:1}
-@keyframes ring-sweep{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+/* ====== SECTION TITLE ====== */
+.stitle{font-family:var(--disp);font-weight:800;font-size:clamp(38px,5vw,62px);line-height:1.1;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance;margin-bottom:18px;color:var(--txt)}
+.ssub{font-size:17px;color:var(--txt2);max-width:520px;line-height:1.65;margin-bottom:44px}
 
-.faq-icon-pop{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+/* ====== LOGO HERO ====== */
+.logo-hero-wrap{display:flex;justify-content:center;align-items:center;margin-bottom:36px;position:relative}
+.logo-hero-glow{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(42,107,228,.18) 0%,rgba(0,200,255,.06) 45%,transparent 70%);animation:logo-pulse 3.2s ease-in-out infinite;pointer-events:none}
+.logo-hero-img{width:210px;position:relative;z-index:1;filter:drop-shadow(0 0 10px rgba(42,180,255,.25))}
+@keyframes logo-pulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.85}}
 
+/* ====== HERO ====== */
+#hero{padding-top:156px;padding-bottom:80px;position:relative;overflow:hidden}
+.hero-glow-a{position:absolute;top:-10%;left:40%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse at center,rgba(42,107,228,.06) 0%,transparent 70%);pointer-events:none}
+.hero-glow-b{position:absolute;top:5%;right:-5%;width:500px;height:500px;background:radial-gradient(ellipse at center,rgba(201,168,76,.04) 0%,transparent 70%);pointer-events:none}
+.hero-layout{display:grid;grid-template-columns:55% 45%;gap:48px;align-items:start}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.08);border:1px solid var(--bdr-gold);border-radius:100px;padding:5px 14px;margin-bottom:24px}
+.badge-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:bdot 2s ease-in-out infinite}
+@keyframes bdot{0%,100%{opacity:1}50%{opacity:.25}}
+.badge-txt{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--gold);text-transform:uppercase}
+.hero-h1{font-family:var(--disp);font-style:italic;font-weight:800;font-size:clamp(64px,8.5vw,108px);line-height:1.05;letter-spacing:.01em;text-transform:uppercase;color:var(--txt);margin-bottom:26px;text-wrap:balance}
+.hero-h1 .gl{color:var(--gold);display:block}
+.typewriter-wrap{display:flex;align-items:center;gap:10px;margin-bottom:22px;min-height:32px}
+.typewriter-txt{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--gold);letter-spacing:.03em}
+.typewriter-cursor{display:inline-block;width:2px;height:18px;background:var(--gold);border-radius:1px;animation:twcursor 1s ease-in-out infinite}
+@keyframes twcursor{0%,100%{opacity:1}50%{opacity:0}}
+.hero-p{font-size:17px;line-height:1.65;color:var(--txt2);max-width:430px;margin-bottom:32px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.btn-pri{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:15px 26px;border-radius:var(--r);transition:transform .15s,box-shadow .2s;box-shadow:0 4px 24px var(--blue-glow);white-space:nowrap}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(42,107,228,.5)}
+.btn-pri:active{transform:translateY(0)}
+.btn-sec{display:inline-flex;align-items:center;gap:9px;background:var(--green-dim);border:1px solid var(--green-bdr);color:var(--green);font-weight:700;font-size:15px;padding:15px 22px;border-radius:var(--r);transition:background .2s;white-space:nowrap}
+.btn-sec:hover{background:rgba(34,197,94,.18)}
+.hero-trust{display:flex;flex-wrap:wrap;gap:18px}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--txt3);font-weight:500}
+
+/* ====== TERMINAL WIDGET ====== */
+.terminal{background:var(--bg2);border:1px solid var(--bdr2);border-radius:var(--rl);overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.03),0 24px 64px rgba(0,0,0,.5),0 0 60px rgba(42,107,228,.04);position:relative}
+.terminal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent)}
+.t-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--bdr)}
+.t-live{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green);letter-spacing:.08em}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+.t-tag{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.07em}
+.t-pair-row{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(201,168,76,.04);border-bottom:1px solid var(--bdr)}
+.t-pair{font-family:var(--disp);font-size:17px;font-weight:700;color:var(--gold-lt);letter-spacing:.04em}
+.t-px{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--txt);font-variant-numeric:tabular-nums}
+.t-chg{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green)}
+.t-cols-hdr{display:grid;grid-template-columns:28px 48px 1fr 76px;padding:8px 16px 4px;border-bottom:1px solid var(--bdr)}
+.t-ch{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase}
+.t-ch:last-child{text-align:right}
+.t-rows{padding:6px 0;min-height:132px;overflow:hidden}
+.t-row{display:grid;grid-template-columns:28px 48px 1fr 76px;padding:7px 16px;align-items:center;transition:background .2s}
+.t-row:hover{background:rgba(255,255,255,.02)}
+.t-num{font-family:var(--mono);font-size:10px;color:var(--txt3)}
+.t-type{font-family:var(--mono);font-size:10px;font-weight:600}
+.t-type.buy{color:var(--green)}.t-type.sell{color:var(--red)}
+.t-price{font-family:var(--mono);font-size:10px;color:var(--txt2)}
+.t-pnl{font-family:var(--mono);font-size:10px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.t-pnl.pos{color:var(--green)}.t-pnl.neg{color:var(--red)}
+.t-foot{border-top:1px solid var(--bdr);padding:11px 16px;display:flex;align-items:center;justify-content:space-between}
+.t-net-lbl{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
+.t-net-val{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums}
+.t-preset{font-family:var(--mono);font-size:9px;color:var(--txt3);letter-spacing:.06em}
+
+/* ====== VIDEO PLACEHOLDER ====== */
+.vid-ph{width:100%;aspect-ratio:16/9;background:var(--bg2);border:1px solid var(--bdr2);border-radius:var(--rl);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s;margin-top:44px}
+.vid-ph:hover{border-color:var(--bdr-gold)}
+.vid-ph::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,107,228,.04) 0%,transparent 50%),linear-gradient(225deg,rgba(201,168,76,.03) 0%,transparent 50%)}
+.play-btn{width:60px;height:60px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;position:relative;z-index:1}
+.vid-ph:hover .play-btn{transform:scale(1.1);background:rgba(255,255,255,.1)}
+.vid-lbl{font-family:var(--mono);font-size:11px;color:var(--txt3);letter-spacing:.06em;position:relative;z-index:1;text-align:center;padding:0 20px}
+
+/* ====== METRICS STRIP ====== */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+.metric{padding:26px 20px;border-right:1px solid var(--bdr);text-align:center}
+.metric:last-child{border-right:none}
+.m-val{font-family:var(--disp);font-size:26px;font-weight:800;color:var(--txt);line-height:1;margin-bottom:5px;letter-spacing:.02em}
+.m-val.gold{color:var(--gold)}
+.m-lbl{font-size:12px;color:var(--txt2);font-weight:500}
+
+/* ====== PAIN VS SOLUTION ====== */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--rl);overflow:hidden;border:1px solid var(--bdr)}
+.pain-col{padding:40px 36px;background:var(--bg2)}
+.pain-col.sol{background:rgba(42,107,228,.03)}
+.pain-lbl{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:26px}
+.pain-lbl.bad{color:var(--red)}.pain-lbl.good{color:var(--blue)}
+.pain-items{display:flex;flex-direction:column;gap:14px}
+.pain-item{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--txt2);line-height:1.5}
+.picon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.picon.bad{background:var(--red-dim);color:var(--red)}.picon.good{background:var(--green-dim);color:var(--green)}
+
+/* ====== FEATURES GRID ====== */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;transition:border-color .3s,background .3s}
+.feat-card:hover{border-color:var(--bdr2);background:var(--bg3)}
+.feat-icon{width:38px;height:38px;background:var(--bg3);border:1px solid var(--bdr);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--gold)}
+.feat-title{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:7px;line-height:1.3}
+.feat-desc{font-size:13px;color:var(--txt2);line-height:1.6}
+
+/* ====== PROOF ====== */
+.proof-card{background:var(--bg2);border:1px solid var(--bdr-gold);border-radius:var(--rxl);padding:40px;position:relative;overflow:hidden}
+.proof-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.proof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:28px 0}
+.pstat{text-align:center;padding:18px;background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r)}
+.pstat-val{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--txt);display:block;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.pstat-val.gold{color:var(--gold)}
+.pstat-lbl{font-size:12px;color:var(--txt2)}
+.btn-gold{display:inline-flex;align-items:center;gap:9px;background:rgba(201,168,76,.07);border:1px solid var(--bdr-gold);color:var(--gold);font-weight:700;font-size:14px;padding:13px 22px;border-radius:var(--r);transition:background .2s}
+.btn-gold:hover{background:rgba(201,168,76,.14)}
+.proof-disc{display:flex;align-items:flex-start;gap:10px;margin-top:18px;padding:14px;background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:4px;font-size:12px;color:var(--txt3);line-height:1.6}
+
+/* ====== STEPS ====== */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps-grid::after{content:'';position:absolute;top:23px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--bdr2),var(--bdr2),transparent);z-index:0}
+.step{padding:0 18px;text-align:center;position:relative;z-index:1}
+.step-num{width:46px;height:46px;border-radius:50%;background:var(--bg2);border:1px solid var(--bdr-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--gold)}
+.step-title{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:7px;line-height:1.3}
+.step-desc{font-size:13px;color:var(--txt2);line-height:1.6}
+
+/* ====== TESTIMONIALS COVERFLOW ====== */
+.cf-wrap{position:relative;width:100%;height:520px;display:flex;justify-content:center;align-items:center;perspective:1400px;margin:40px 0 32px}
+.cf-card{position:absolute;width:300px;height:420px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);transition:all 700ms cubic-bezier(.25,1,.5,1);cursor:pointer;background:var(--bg2)}
+.cf-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cf-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.08) 25%,rgba(0,0,0,.65) 60%,rgba(0,0,0,.95) 100%);z-index:1}
+.cf-card-body{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:20px;text-align:center}
+.cf-ph-icon{color:var(--txt3);margin-bottom:10px}
+.cf-ph-txt{font-family:var(--mono);font-size:10px;color:var(--txt3);letter-spacing:.05em;line-height:1.5}
+.cf-nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:background .2s;backdrop-filter:blur(8px)}
+.cf-nav-btn:hover{background:rgba(0,0,0,.8)}
+.cf-nav-prev{left:0}.cf-nav-next{right:0}
+.cf-dots{display:flex;align-items:center;justify-content:center;gap:8px}
+.cf-dot{height:8px;border-radius:100px;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:all .3s}
+.cf-bg{position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:var(--rl);pointer-events:none}
+.cf-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.18) blur(28px);transform:scale(1.15);transition:opacity .8s}
+
+/* ====== OFFER CARD ====== */
+.offer-wrap{max-width:660px;margin:0 auto}
+.offer-card{background:var(--bg2);border:1px solid var(--bdr2);border-radius:var(--rxl);overflow:hidden;position:relative;box-shadow:0 0 80px -20px rgba(42,107,228,.12)}
+.offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.offer-head{text-align:center;padding:40px 40px 30px;border-bottom:1px solid var(--bdr)}
+.offer-pill{display:inline-block;background:var(--blue-dim);border:1px solid rgba(42,107,228,.3);color:#6EA3F0;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+.offer-name{font-family:var(--disp);font-size:40px;font-weight:800;color:var(--txt);letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px;line-height:1}
+.offer-px-row{display:flex;align-items:baseline;justify-content:center;gap:4px;margin:18px 0 6px}
+.offer-curr{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--txt2)}
+.offer-num{font-family:var(--mono);font-size:68px;font-weight:600;color:var(--txt);line-height:1;font-variant-numeric:tabular-nums}
+.offer-note{font-size:13px;color:var(--txt2)}
+.offer-incs{padding:28px 40px;border-bottom:1px solid var(--bdr)}
+.offer-incs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inc-item{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--txt2)}
+.inc-icon{width:18px;height:18px;border-radius:4px;background:var(--green-dim);border:1px solid var(--green-bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--green)}
+.offer-cta-area{padding:28px 40px;text-align:center}
+.btn-offer{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:800;font-size:16px;padding:20px 36px;border-radius:var(--r);transition:transform .15s,box-shadow .2s;box-shadow:0 4px 32px var(--blue-glow);width:100%;font-family:var(--body)}
+.btn-offer:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(42,107,228,.5)}
+.offer-sub-note{margin-top:12px;font-size:12px;color:var(--txt3)}
+
+/* ====== ACCOUNT MANAGEMENT ====== */
+.mgmt-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.mgmt-pill{display:inline-block;background:var(--gold-dim);border:1px solid var(--bdr-gold);color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+.mgmt-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);padding:26px}
+.mgmt-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--bdr);font-size:14px}
+.mgmt-row:last-child{border-bottom:none}
+.mgmt-lbl{color:var(--txt2)}
+.mgmt-val{color:var(--txt);font-weight:600}
+.mgmt-val.hl{color:var(--gold)}
+.btn-blue-out{display:inline-flex;align-items:center;gap:9px;background:var(--blue-dim);border:1px solid rgba(42,107,228,.3);color:#6EA3F0;font-weight:700;font-size:14px;padding:13px 22px;border-radius:var(--r);transition:background .2s;white-space:nowrap}
+.btn-blue-out:hover{background:rgba(42,107,228,.18)}
+
+/* ====== AUTHORITY ====== */
+.auth-ph{width:100%;height:260px;background:var(--bg2);border:1px dashed rgba(255,255,255,.07);border-radius:var(--rl);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.auth-ph-txt{font-family:var(--mono);font-size:10px;color:var(--txt3);letter-spacing:.06em}
+
+/* ====== FAQ ====== */
+.faq-list{display:flex;flex-direction:column;gap:7px}
+.faq-item{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:rgba(201,168,76,.22)}
+.faq-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:18px 22px;text-align:left;font-size:14px;font-weight:600;color:var(--txt);transition:color .2s;gap:14px}
+.faq-btn:hover,.faq-item.open .faq-btn{color:var(--gold)}
+.faq-icon{width:22px;height:22px;border-radius:50%;background:var(--bg3);border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,border-color .2s;color:var(--txt2);font-size:16px;line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--bdr-gold);color:var(--gold)}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ans-inner{padding:0 22px 18px;font-size:14px;color:var(--txt2);line-height:1.7}
+.faq-item.open .faq-ans{max-height:320px}
+
+/* ====== FINAL CTA ====== */
+.final-sec{text-align:center;padding:120px 0;position:relative;overflow:hidden}
+.final-glow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:700px;height:350px;background:radial-gradient(ellipse at center bottom,rgba(42,107,228,.08) 0%,transparent 70%);pointer-events:none}
+.final-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.final-title{font-size:clamp(24px,3.5vw,40px);font-weight:700;color:var(--txt);max-width:580px;margin:0 auto 28px;line-height:1.35;text-wrap:balance}
+.final-risk{margin-top:18px;font-size:12px;color:var(--txt3)}
+
+/* ====== FOOTER ====== */
+footer{border-top:1px solid var(--bdr);padding:40px 0;text-align:center}
+.footer-disc{font-size:12px;color:var(--txt3);line-height:1.8;max-width:620px;margin:0 auto 14px}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--txt3);letter-spacing:.06em}
+
+/* ====== REVEALS ====== */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.28,1),transform .8s cubic-bezier(.16,.8,.28,1);will-change:opacity,transform}
+.rev.in{opacity:1;transform:translateY(0)}
+.rev-l{opacity:0;transform:translateX(-30px);transition:opacity .8s cubic-bezier(.16,.8,.28,1),transform .8s cubic-bezier(.16,.8,.28,1)}
+.rev-l.in{opacity:1;transform:translateX(0)}
+.rev-r{opacity:0;transform:translateX(30px);transition:opacity .8s cubic-bezier(.16,.8,.28,1),transform .8s cubic-bezier(.16,.8,.28,1)}
+.rev-r.in{opacity:1;transform:translateX(0)}
+.rev-sc{opacity:0;transform:scale(.95) translateY(16px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
+.rev-sc.in{opacity:1;transform:scale(1) translateY(0)}
+.h-ent{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,.8,.28,1),transform .9s cubic-bezier(.16,.8,.28,1)}
+.h-ent.in{opacity:1;transform:translateY(0)}
+
+/* ====== PARTICLES ====== */
+.particle{position:fixed;pointer-events:none;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--gold);z-index:9999;user-select:none;animation:p-rise .75s ease-out forwards}
+@keyframes p-rise{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-44px) scale(.65)}}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:1024px){
+  .hero-layout{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .steps-grid::after{display:none}
+  .mgmt-layout{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .sec{padding:84px 0}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric:nth-child(2){border-right:none}
+  .metric:nth-child(3){border-top:1px solid var(--bdr);border-right:1px solid var(--bdr)}
+  .metric:nth-child(4){border-top:1px solid var(--bdr);border-right:none}
+  .pain-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .proof-stats{grid-template-columns:1fr;gap:10px}
+  .offer-incs-grid{grid-template-columns:1fr}
+  .offer-head,.offer-incs,.offer-cta-area{padding:24px 22px}
+  .cf-wrap{height:380px}.cf-card{width:220px;height:310px}
+  .proof-card{padding:26px 18px}
+}
+@media(max-width:480px){
+  #hero{padding-top:114px}
+  .hero-h1{font-size:clamp(56px,15vw,80px)}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn-pri,.hero-btns .btn-sec{width:100%;justify-content:center}
+  .steps-grid{grid-template-columns:1fr}
+  .final-sec{padding:80px 0}
+  .wrap,.wrap-md,.wrap-sm{padding:0 16px}
+}
 @media(prefers-reduced-motion:reduce){
-  .reveal,.reveal-scale,.reveal-left,.reveal-right,.hero-anim{opacity:1!important;transform:none!important;transition:none!important}
-  .orb-a,.orb-b,.pulse-glow,.btn-metallic::before,.btn-crypto::before,.marquee-anim,.ring-sweep,.price-glow-ring::after{animation:none!important}
-  .tilt-card{transition:none!important}
+  .rev,.rev-l,.rev-r,.rev-sc,.h-ent{opacity:1!important;transform:none!important;transition:none!important}
+  .ticker-track{animation:none!important}
+  .live-dot,.badge-dot{animation:none!important}
+  .particle{display:none!important}
+  .btn-pri,.btn-offer{transition:none!important}
 }
 </style>
 </head>
-<body class="bg-[#0c0e14] text-gray-100 antialiased">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-533BC7BR"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<body>
+<!-- GTM noscript -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-533BC7BR" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<nav class="sticky-nav">
-  <div class="sticky-nav-brand">AUTO<span>TRADER</span> INSIDER</div>
-  <div class="sticky-nav-btns">
-    <div class="lang-selector" id="langSelector">
-      <button class="lang-btn" onclick="toggleLang()" aria-label="Select language">
-        <span id="currentFlag">&#127482;&#127480;</span>
-        <span class="lang-label" id="currentLangLabel">EN</span>
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-      </button>
-      <div class="lang-dropdown" id="langDropdown">
-        <button class="lang-option active" onclick="setLang('en')">&#127482;&#127480; <span>English</span></button>
-        <button class="lang-option" onclick="setLang('es')">&#127466;&#127480; <span>Espa&#241;ol</span></button>
-      </div>
-    </div>
-    <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" class="btn-canal" id="canalBtn" onclick="fbq('track','Lead',{content_name:'canal_nav',currency:'USD',value:5})">
-      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-      <span data-i18n="free_channel">Canal Grátis</span>
-    </a>
-  </div>
-</nav>
-
-<div class="w-full h-8 bg-[rgba(12,14,20,0.92)] backdrop-blur-sm border-b border-white/5 overflow-hidden flex items-center" style="margin-top:56px;">
-  <div class="marquee-anim text-xs font-semibold tracking-widest">
-    <span style="padding-right:3rem;color:#9ca3af;">Lifetime Access</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#9ca3af;">100% Automated Bot</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#9ca3af;">Forex &middot; Gold &middot; Crypto</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#9ca3af;">Lifetime Access</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#9ca3af;">100% Automated Bot</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#60a5fa;font-weight:800;letter-spacing:0.14em;">MT4 &amp; MT5</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#c9a84c;font-weight:800;letter-spacing:0.14em;">VIP PRESETS</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
-    <span style="padding-right:3rem;color:#9ca3af;">Forex &middot; Gold &middot; Crypto</span>
-    <span style="padding-right:1rem;color:rgba(255,255,255,0.12)">&#10022;</span>
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ti g">XAUUSD</span><span class="ti s">◆</span>
+    <span class="ti">MT4 + MT5</span><span class="ti s">◆</span>
+    <span class="ti g">VIP PRESETS</span><span class="ti s">◆</span>
+    <span class="ti">Hedge Strategy</span><span class="ti s">◆</span>
+    <span class="ti b">Copy Trade Included</span><span class="ti s">◆</span>
+    <span class="ti g">Lifetime Access</span><span class="ti s">◆</span>
+    <span class="ti">Automated Trading System</span><span class="ti s">◆</span>
+    <span class="ti b">Conservative · Moderate · Aggressive</span><span class="ti s">◆</span>
+    <span class="ti">Unlimited Accounts</span><span class="ti s">◆</span>
+    <span class="ti g">XAUUSD</span><span class="ti s">◆</span>
+    <span class="ti">MT4 + MT5</span><span class="ti s">◆</span>
+    <span class="ti g">VIP PRESETS</span><span class="ti s">◆</span>
+    <span class="ti">Hedge Strategy</span><span class="ti s">◆</span>
+    <span class="ti b">Copy Trade Included</span><span class="ti s">◆</span>
+    <span class="ti g">Lifetime Access</span><span class="ti s">◆</span>
+    <span class="ti">Automated Trading System</span><span class="ti s">◆</span>
+    <span class="ti b">Conservative · Moderate · Aggressive</span><span class="ti s">◆</span>
+    <span class="ti">Unlimited Accounts</span><span class="ti s">◆</span>
   </div>
 </div>
 
-<section class="sec relative overflow-hidden" id="hero">
-  <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none"></div>
-  <div class="orb orb-a absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/5"></div>
-  <div class="orb orb-b absolute top-10 right-[8%] w-[260px] h-[260px] bg-purple-500/5"></div>
-  <div class="wrap-lg relative z-10" style="display:flex;justify-content:center;">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <h1 class="hero-title-main hero-anim" style="transition-delay:.05s">AUTOTRADER INSIDER</h1>
-        <p class="hero-title-sub hero-anim" style="transition-delay:.18s"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n="hero_sub">AUTOMAÇÃO ATIVA EM CADA OPERAÇÃO</span></p>
-        <p class="text-sm sm:text-base text-gray-400 mb-8 leading-relaxed hero-anim" style="max-width:500px;margin-left:auto;margin-right:auto;text-align:center;transition-delay:.3s" data-i18n="hero_desc">Sistema de trading automatizado com configuração instantânea e suporte completo. Feito para quem busca velocidade, estratégia e simplicidade — sem emoções, sem gráficos complexos. Ative o robô e deixe a tecnologia trabalhar por você.</p>
-        <div class="hero-anim" style="display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;transition-delay:.42s">
-          <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" id="heroCanalBtn"
-             class="inline-flex items-center gap-2 font-semibold px-6 py-4 rounded-xl text-base w-full justify-center pulse-glow"
-             style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;"
-             onclick="fbq('track','Lead',{content_name:'canal_hero',currency:'USD',value:5})">
-            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            <span data-i18n="join_free">Entrar no Canal — Grátis</span>
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-brand">AUTO<span>TRADER</span> INSIDER</div>
+  <div class="nav-right">
+    <div class="lang-sel" id="langSel">
+      <button class="lang-btn" onclick="toggleLang()" aria-label="Seleccionar idioma">
+        <span id="flagEl">🇪🇸</span>
+        <span class="lbl" id="langLbl">ES</span>
+        <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="lang-dd" id="langDd">
+        <button class="lang-opt active" onclick="setLang('es')">🇪🇸 <span>Español</span></button>
+        <button class="lang-opt" onclick="setLang('en')">🇺🇸 <span>English</span></button>
+        <button class="lang-opt" onclick="setLang('pt')">🇧🇷 <span>Português</span></button>
+        <button class="lang-opt" onclick="setLang('fr')">🇫🇷 <span>Français</span></button>
+        <button class="lang-opt" onclick="setLang('it')">🇮🇹 <span>Italiano</span></button>
+        <button class="lang-opt" onclick="setLang('ru')">🇷🇺 <span>Русский</span></button>
+        <button class="lang-opt" onclick="setLang('ar')">🇸🇦 <span>العربية</span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow-a"></div>
+  <div class="hero-glow-b"></div>
+  <div class="wrap">
+    <!-- LOGO -->
+    <div class="logo-hero-wrap h-ent" style="transition-delay:.02s">
+      <div class="logo-hero-glow"></div>
+      <img src="normal.png" alt="AutoTrader Insider" class="logo-hero-img">
+    </div>
+    <div class="hero-layout">
+      <!-- TEXT -->
+      <div>
+        <div class="hero-badge h-ent" style="transition-delay:.05s">
+          <div class="badge-dot"></div>
+          <span class="badge-txt" data-i18n="hero_badge">Sistema Automatizado · MT4 y MT5</span>
+        </div>
+        <h1 class="hero-h1 h-ent" style="transition-delay:.12s">
+          <span data-i18n="hero_h1a">EL SISTEMA</span>
+          <span class="gl" data-i18n="hero_h1b">QUE NO DUERME</span>
+        </h1>
+        <div class="typewriter-wrap h-ent" style="transition-delay:.19s">
+          <span class="typewriter-txt" id="twTxt"></span><span class="typewriter-cursor"></span>
+        </div>
+        <p class="hero-p h-ent" style="transition-delay:.22s" data-i18n="hero_sub">EA con estrategia de hedge para MT4 y MT5. Presets optimizados para XAUUSD, Copy Trade gratuito y soporte de configuración. Pago único vitalicio.</p>
+        <div class="hero-btns h-ent" style="transition-delay:.32s">
+          <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" id="heroCta1" class="btn-pri" onclick="fbq('track','Lead',{content_name:'hero_pri',currency:'USD',value:5})">
+            <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+            <span data-i18n="hero_cta1">Entrar al Canal</span>
           </a>
         </div>
-        <p class="text-xs text-gray-600 mt-4 hero-anim" style="text-align:center;transition-delay:.52s" data-i18n="hero_trust">• Pagamento 100% Seguro • Suporte Completo • Ativação Imediata após comprovante •</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="how-it-works">
-  <div class="wrap-lg">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 reveal" data-i18n="how_title">GUIA DE COMPRA FÁCIL</h2>
-    <p class="text-gray-500 text-center text-sm mb-10 reveal" data-i18n="how_sub">Sistema pronto para operação automática em minutos.</p>
-    <div class="grid-steps">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">1</div>
-          <h3 class="font-semibold text-base" data-i18n="step1_title">COMPLETE O PAGAMENTO</h3>
+        <div class="hero-trust h-ent" style="transition-delay:.42s">
+          <div class="trust-item">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span data-i18n="trust1">Pago seguro</span>
+          </div>
+          <div class="trust-item">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span data-i18n="trust2">Verificación manual</span>
+          </div>
+          <div class="trust-item">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <span data-i18n="trust3">Soporte en Telegram</span>
+          </div>
         </div>
-        <p class="text-sm text-gray-400" data-i18n="step1_desc">Garanta sua EA rapidamente pelo site ou Telegram, usando uma plataforma de pagamento global totalmente segura.</p>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">2</div>
-          <h3 class="font-semibold text-base" data-i18n="step2_title">ENVIE SEU COMPROVANTE</h3>
-        </div>
-        <p class="text-sm text-gray-400" data-i18n="step2_desc">Envie seu comprovante de pagamento direto para nosso suporte no Telegram e agilize a liberação do seu sistema.</p>
-      </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">3</div>
-          <h3 class="font-semibold text-base" data-i18n="step3_title">ACESSO INSTANTÂNEO</h3>
-        </div>
-        <p class="text-sm text-gray-400" data-i18n="step3_desc">Assim que processado, você recebe na hora os arquivos, todos os presets e acesso exclusivo ao nosso grupo privado.</p>
-      </div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition reveal tilt-card">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 text-xl font-bold shrink-0">4</div>
-          <h3 class="font-semibold text-base" data-i18n="step4_title">RELAXE E DEIXE COM A GENTE</h3>
-        </div>
-        <p class="text-sm text-gray-400" data-i18n="step4_desc">Agora é só relaxar e ver suas operações sendo executadas automaticamente em tempo real.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-5 py-16 md:py-20 border-t border-white/5">
-  <div class="max-w-3xl mx-auto text-center reveal-scale">
-    <div class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full mb-6" data-i18n="excl_badge">EXCLUSIVO</div>
-    <h2 class="text-2xl sm:text-3xl font-bold mb-4" data-i18n="tg_title">QUER SABER MAIS?</h2>
-    <p class="text-gray-400 mb-8 max-w-xl mx-auto" data-i18n="tg_desc">Entre no nosso grupo do Telegram e veja o robô operando ao vivo. Sem custo, sem compromisso.</p>
-    <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" id="tgMidBtn"
-       class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all duration-300 glow"
-       onclick="fbq('track','Lead',{content_name:'canal_mid',currency:'USD',value:5})">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      <span data-i18n="tg_btn">Entrar no Telegram</span>
-    </a>
-  </div>
-</section>
-
-<section class="px-5 py-16 md:py-20 border-t border-white/5">
-  <div class="max-w-5xl mx-auto">
-    <p class="text-center text-xs font-bold tracking-widest uppercase text-blue-400 mb-3 reveal" data-i18n="why_label">POR QUE AUTOTRADER INSIDER</p>
-    <h2 class="text-3xl sm:text-5xl font-extrabold text-center mb-5 leading-tight reveal" data-i18n="why_title">FEITO PARA<br>TRADING AUTOMATIZADO</h2>
-    <p class="text-gray-400 text-center text-sm sm:text-base leading-relaxed mb-12 max-w-2xl mx-auto reveal" data-i18n="why_desc">A AutoTrader Insider automatiza entradas, saídas e gestão de operações usando configurações predefinidas. Você recebe o robô mais os presets para começar a operar mais rápido, sem complicação nem meses de estudo.</p>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
-        <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg></div>
-        <h3 class="font-bold text-base text-white mb-3" data-i18n="card1_title">EA Totalmente Automatizada</h3>
-        <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card1_desc">Roda dentro do MetaTrader e executa operações com base nas configurações e presets de estratégia escolhidos.</p>
-      </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
-        <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3 class="font-bold text-base text-white mb-3" data-i18n="card2_title">Presets Prontos para Usar</h3>
-        <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card2_desc">Acesse configurações VIP predefinidas para diferentes ativos e estilos, incluindo opções mais conservadoras e mais agressivas.</p>
-      </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
-        <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg></div>
-        <h3 class="font-bold text-base text-white mb-3" data-i18n="card3_title">Forex, Ouro e Cripto</h3>
-        <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card3_desc">Feito para múltiplos mercados e ativos, conforme as configurações dos presets e as condições da plataforma.</p>
-      </div>
-      <div class="bg-white/5 border border-white/8 rounded-2xl p-6 hover:bg-white/8 hover:border-blue-500/20 transition-all duration-300 reveal tilt-card">
-        <div class="w-11 h-11 bg-[#1a1f2e] rounded-xl flex items-center justify-center mb-5"><svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-        <h3 class="font-bold text-base text-white mb-3" data-i18n="card4_title">Ferramentas de Gestão de Risco</h3>
-        <p class="text-sm text-gray-400 leading-relaxed" data-i18n="card4_desc">Use parâmetros predefinidos, configurações de lote e controles de risco. Os resultados sempre dependem das condições de mercado e da configuração.</p>
-      </div>
-    </div>
-    <div style="margin-top:44px;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
-        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-          <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" class="btn-metallic pulse-glow" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;color:#fff;font-weight:700;font-size:15px;padding:17px 28px;border-radius:13px;text-decoration:none;" onclick="fbq('track','Lead',{content_name:'canal_why',currency:'USD',value:5})">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            <span data-i18n="join_channel_btn">Entrar no Canal do Telegram</span>
-          </a>
+      <!-- TERMINAL WIDGET -->
+      <div class="h-ent" style="transition-delay:.18s">
+        <div class="terminal">
+          <div class="t-head">
+            <div class="t-live"><div class="live-dot"></div><span>EA LIVE</span></div>
+            <span class="t-tag">MT4 / MT5 · HEDGE STRATEGY</span>
+          </div>
+          <div class="t-pair-row">
+            <span class="t-pair">XAUUSD</span>
+            <span class="t-px" id="xauPx">2319.40</span>
+            <span class="t-chg" id="xauChg">+0.34%</span>
+          </div>
+          <div class="t-cols-hdr">
+            <span class="t-ch">#</span>
+            <span class="t-ch">TYPE</span>
+            <span class="t-ch">PRICE</span>
+            <span class="t-ch" style="text-align:right">P&amp;L</span>
+          </div>
+          <div class="t-rows" id="tRows"></div>
+          <div class="t-foot">
+            <div>
+              <span class="t-net-lbl">NET P&amp;L</span>
+              <span class="t-net-val" id="tNet">+$487.60</span>
+            </div>
+            <span class="t-preset" id="tPreset">PRESET: MODERATE</span>
+          </div>
         </div>
       </div>
     </div>
+    <!-- VIDEO PRINCIPAL -->
+    <div id="vid1wrap" class="rev" style="width:100%;margin-top:44px;border-radius:var(--rl);overflow:hidden;border:1px solid var(--bdr2);aspect-ratio:16/9;position:relative;cursor:pointer;background:#000" onclick="loadVid1()">
+      <img src="https://img.youtube.com/vi/jOJ5aeqpr6Q/hqdefault.jpg" alt="AutoTrader Insider" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.85">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+        <div style="width:72px;height:72px;background:rgba(255,0,0,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 32px rgba(0,0,0,.5);transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+          <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+    <script>
+    function loadVid1(){
+      var w=document.getElementById('vid1wrap');
+      var ifr=document.createElement('iframe');
+      ifr.src='https://www.youtube.com/embed/jOJ5aeqpr6Q?rel=0&modestbranding=1&autoplay=1';
+      ifr.title='AutoTrader Insider';
+      ifr.frameBorder='0';
+      ifr.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
+      ifr.allowFullscreen=true;
+      ifr.style.cssText='position:absolute;inset:0;width:100%;height:100%';
+      ifr.onerror=function(){window.open('https://youtu.be/jOJ5aeqpr6Q','_blank');};
+      w.innerHTML='';
+      w.appendChild(ifr);
+      w.onclick=null;
+      setTimeout(function(){
+        try{
+          var doc=ifr.contentDocument||ifr.contentWindow.document;
+          if(!doc||doc.title.indexOf('Error')>-1||doc.body.innerHTML===''){
+            window.open('https://youtu.be/jOJ5aeqpr6Q','_blank');
+            w.innerHTML='';
+            w.onclick=function(){window.open('https://youtu.be/jOJ5aeqpr6Q','_blank');};
+          }
+        }catch(e){}
+      },2500);
+    }
+    </script>
   </div>
 </section>
 
-<section class="px-5 py-16 md:py-20 border-t border-white/5">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2" data-i18n="vs_title">AINDA OPERANDO MANUALMENTE?</h2>
-    <p class="text-gray-500 text-center text-sm mb-10" data-i18n="vs_sub">Veja a diferença na prática</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px rounded-2xl overflow-hidden border border-white/10">
-      <div class="bg-white/5 p-6 sm:p-8 reveal-left">
-        <p class="text-sm font-semibold text-red-400 mb-5 flex items-center gap-2">
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 9l-6 6M9 9l6 6"/></svg>
-          <span data-i18n="manual_label">Trader manual</span>
-        </p>
-        <div class="flex flex-col gap-4">
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m1">Grudado nos gráficos o dia inteiro</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m2">Opera na emoção, perde com raiva</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m3">Perde oportunidades enquanto dorme</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m4">Precisa de meses de estudo antes</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span class="text-sm text-gray-400" data-i18n="m5">Resultados inconsistentes</span></div>
+<!-- METRICS STRIP -->
+<div class="metrics">
+  <div class="metric rev"><div class="m-val">MT4+MT5</div><div class="m-lbl" data-i18n="ml1">Versiones incluidas</div></div>
+  <div class="metric rev"><div class="m-val">3</div><div class="m-lbl" data-i18n="ml2">Presets de riesgo</div></div>
+  <div class="metric rev"><div class="m-val gold">VIP</div><div class="m-lbl" data-i18n="ml3">Acceso vitalicio</div></div>
+  <div class="metric rev"><div class="m-val">24/7</div><div class="m-lbl" data-i18n="ml4">Operación automática</div></div>
+</div>
+
+<!-- PAIN / SOLUTION -->
+<section class="sec">
+  <div class="wrap">
+    <div class="eyebrow rev" data-i18n="pain_ey">El problema real</div>
+    <h2 class="stitle rev" data-i18n="pain_title">El mayor enemigo del trader<br>no es el mercado.</h2>
+    <p class="ssub rev" data-i18n="pain_sub">Es la emoción. La fatiga. La decisión tomada en el momento equivocado. El sistema automatizado no tiene ninguna de las tres.</p>
+    <div class="pain-grid">
+      <div class="pain-col rev-l">
+        <div class="pain-lbl bad">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+          <span data-i18n="pain_bad">Trader manual</span>
+        </div>
+        <div class="pain-items">
+          <div class="pain-item"><div class="picon bad"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><span data-i18n="pm1">Pegado a los gráficos todo el día</span></div>
+          <div class="pain-item"><div class="picon bad"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><span data-i18n="pm2">Opera con emoción, pierde con rabia</span></div>
+          <div class="pain-item"><div class="picon bad"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><span data-i18n="pm3">Pierde oportunidades mientras duerme</span></div>
+          <div class="pain-item"><div class="picon bad"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><span data-i18n="pm4">Necesita meses de estudio</span></div>
+          <div class="pain-item"><div class="picon bad"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><span data-i18n="pm5">Resultados inconsistentes</span></div>
         </div>
       </div>
-      <div class="bg-blue-950/40 p-6 sm:p-8 border-l border-white/5 reveal-right">
-        <p class="text-sm font-semibold text-blue-400 mb-5 flex items-center gap-2">
-          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+      <div class="pain-col sol rev-r">
+        <div class="pain-lbl good">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
           AutoTrader Insider
-        </p>
-        <div class="flex flex-col gap-4">
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-gray-300" data-i18n="a1">Opera 24/7 sem precisar acompanhar</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-gray-300" data-i18n="a2">Sem emoção, 100% disciplinado</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-gray-300" data-i18n="a3">Captura oportunidades durante a madrugada</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-gray-300" data-i18n="a4">Ativo em minutos, sem cursos</span></div>
-          <div class="flex items-start gap-3"><svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-gray-300" data-i18n="a5">Estratégia testada e automática</span></div>
+        </div>
+        <div class="pain-items">
+          <div class="pain-item"><div class="picon good"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span data-i18n="pa1">Opera 24/7 sin que lo supervises</span></div>
+          <div class="pain-item"><div class="picon good"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span data-i18n="pa2">Sin emoción, 100% disciplinado</span></div>
+          <div class="pain-item"><div class="picon good"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span data-i18n="pa3">Captura oportunidades nocturnas</span></div>
+          <div class="pain-item"><div class="picon good"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span data-i18n="pa4">Activo en minutos con presets listos</span></div>
+          <div class="pain-item"><div class="picon good"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span data-i18n="pa5">Estrategia de hedge predefinida</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="px-5 py-16 md:py-20 border-t border-white/5">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-2 reveal" data-i18n="faq_title">PERGUNTAS FREQUENTES</h2>
-    <p class="text-gray-500 text-center text-sm mb-10 reveal" data-i18n="faq_sub">Tudo o que você precisa saber sobre o sistema automatizado</p>
-    <div class="space-y-3">
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq1q">Preciso ter experiência em trading?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq1a">Não. Nossa EA é fácil e automática. Se você sabe ligar um celular, já sabe usá-la.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq2q">Funciona no MT4 e no MT5?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq2a">Sim, perfeitamente. Basta nos informar sua plataforma preferida e enviaremos a EA e os presets compatíveis.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq3q">Quanto tempo leva a configuração?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq3a">Basta enviar o comprovante de pagamento que iniciamos a entrega imediatamente.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq4q">Quais corretoras são compatíveis?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq4a">As principais do mercado. Fale com a gente no Telegram para receber a lista completa.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq5q">Preciso deixar o computador ligado?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed" data-i18n="faq5a">Não. Nossa EA roda em servidores na nuvem via VPS. Basta instalar e ela funciona 24/7 automaticamente.</div></div>
-      <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden reveal"><button class="faq-btn w-full flex items-center justify-between p-5 text-left text-sm font-medium hover:bg-white/10 transition"><span data-i18n="faq6q">O que é Gestão de Conta?</span><span class="faq-icon faq-icon-pop text-xl text-blue-400 shrink-0">+</span></button><div class="faq-answer px-5 text-sm text-gray-400 leading-relaxed"><span data-i18n="faq6a">Nossa alternativa gratuita. Você abre uma conta na corretora recomendada e nós ativamos o sistema. A taxa é de 20% sobre os resultados, cobrada apenas quando você saca.</span> <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" style="color:#60a5fa;text-decoration:underline;" data-i18n="learn_more"> Saiba mais aqui.</a></div></div>
+<!-- SOLUTION / FEATURES -->
+<section class="sec">
+  <div class="wrap">
+    <div class="eyebrow rev" data-i18n="sol_ey">La solución</div>
+    <h2 class="stitle rev" data-i18n="sol_title">Más que una EA</h2>
+    <p class="ssub rev" data-i18n="sol_sub">AutoTrader Insider es un sistema completo. Recibes la herramienta y todo lo que necesitas para usarla desde el primer día.</p>
+    <div class="feat-grid">
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="feat-title" data-i18n="ft1">EA para MT4 y MT5</div>
+        <div class="feat-desc" data-i18n="fd1">Ambas versiones incluidas. Instala, aplica el preset y la EA ejecuta automáticamente según la estrategia de hedge.</div>
+      </div>
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
+        <div class="feat-title" data-i18n="ft2">Setup optimizado XAUUSD</div>
+        <div class="feat-desc" data-i18n="fd2">Configuración específica para Gold / XAUUSD, el activo más probado con el sistema.</div>
+      </div>
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="feat-title" data-i18n="ft3">3 Presets de riesgo VIP</div>
+        <div class="feat-desc" data-i18n="fd3">Conservador, Moderado y Agresivo. Cada preset controla el riesgo por parámetros predefinidos.</div>
+      </div>
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="feat-title" data-i18n="ft4">Canal VIP de miembros</div>
+        <div class="feat-desc" data-i18n="fd4">Acceso al canal exclusivo con actualizaciones del sistema, estrategias y comunicación directa.</div>
+      </div>
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg></div>
+        <div class="feat-title" data-i18n="ft5">Copy Trade gratuito incluido</div>
+        <div class="feat-desc" data-i18n="fd5">Bonus incluido: las operaciones de la cuenta master se replican automáticamente en tu cuenta.</div>
+      </div>
+      <div class="feat-card rev">
+        <div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="feat-title" data-i18n="ft6">Soporte y actualizaciones vitalicias</div>
+        <div class="feat-desc" data-i18n="fd6">Soporte de configuración por Telegram y todas las actualizaciones futuras incluidas sin costo adicional.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="px-5 py-20 md:py-28 border-t border-white/5 relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent pointer-events-none"></div>
-  <div class="relative z-10 max-w-3xl mx-auto text-center reveal-scale">
-    <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
-      <span data-i18n="final_title">JUNTE-SE À NOSSA COMUNIDADE NO</span><br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">TELEGRAM</span>
-    </h2>
-    <p class="text-gray-400 max-w-lg mx-auto mb-8" data-i18n="final_desc">Entre no Telegram e descubra como é simples usar nossa EA.</p>
-    <a href="https://t.me/+obABDl-erLcwOGNh" target="_blank" id="tgFinalBtn"
-       class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold px-10 py-5 rounded-xl text-lg transition-all duration-300 glow"
-       onclick="fbq('track','Lead',{content_name:'canal_final',currency:'USD',value:5})">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      <span data-i18n="final_btn">ENTRAR NO TELEGRAM</span>
+
+<!-- MID CTA -->
+<section style="padding:20px 0 60px;text-align:center">
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:14px">
+    <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" class="btn-pri" style="font-size:17px;padding:18px 40px;box-shadow:0 6px 40px rgba(42,107,228,.5)" onclick="fbq('track','Lead',{content_name:'mid_cta',currency:'USD',value:5})">
+      <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      <span id="midCtaTxt" data-i18n="hero_cta1">Entrar al Canal</span>
     </a>
-    <p class="text-xs text-gray-600 mt-5" data-i18n="final_sub">• Comunidade Ativa • Posts Diários • Dicas e Estratégias •</p>
+    <p style="font-size:12px;color:var(--txt3)" data-i18n="off_sub">El acceso se libera tras verificación manual del pago.</p>
   </div>
 </section>
 
-<footer class="px-5 py-6 border-t border-white/5 text-center text-xs text-gray-600">
-  <p class="max-w-2xl mx-auto leading-relaxed" data-i18n="footer_disc"><strong>Aviso de conformidade:</strong> Software de trading automatizado apenas para fins educacionais e informativos. O trading automatizado envolve riscos. Resultados não são garantidos.</strong> Automated trading software for educational and informational purposes only. Automated trading involves risk. Results are not guaranteed.</p>
-  <p class="mt-3">&copy; 2026 &bull; AUTOTRADER INSIDER &bull; All rights reserved.</p>
+<!-- HOW IT WORKS -->
+<section class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow rev" style="justify-content:center" data-i18n="steps_ey">Proceso</div>
+      <h2 class="stitle rev" style="text-align:center" data-i18n="steps_title">En 4 pasos simples</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step rev"><div class="step-num">01</div><div class="step-title" data-i18n="stt1">Elige el acceso vitalicio</div><div class="step-desc" data-i18n="std1">Un solo plan, pago único de por vida. Sin renovaciones.</div></div>
+      <div class="step rev"><div class="step-num">02</div><div class="step-title" data-i18n="stt2">Realiza el pago</div><div class="step-desc" data-i18n="std2">Tarjeta vía Stripe o USDT/TRX vía crypto en red TRON (TRC20).</div></div>
+      <div class="step rev"><div class="step-num">03</div><div class="step-title" data-i18n="stt3">Envía el comprobante</div><div class="step-desc" data-i18n="std3">Comparte el hash o captura al soporte en Telegram para verificación.</div></div>
+      <div class="step rev"><div class="step-num">04</div><div class="step-title" data-i18n="stt4">Recibe tu acceso</div><div class="step-desc" data-i18n="std4">Archivos, presets y acceso al canal VIP tras confirmación del pago.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS PLACEHOLDER -->
+<section class="sec">
+  <div class="wrap">
+    <div class="eyebrow rev" data-i18n="testi_ey">Miembros</div>
+    <h2 class="stitle rev" data-i18n="testi_title">Lo que dicen los miembros</h2>
+    <!-- COVERFLOW CAROUSEL -->
+    <div style="position:relative;border-radius:var(--rl);overflow:hidden;padding:0 60px">
+      <div class="cf-bg"><img id="cfBgImg" src="" alt=""></div>
+      <div class="cf-wrap" id="cfWrap"></div>
+      <button class="cf-nav-btn cf-nav-prev" id="cfPrev" aria-label="Anterior">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="cf-nav-btn cf-nav-next" id="cfNext" aria-label="Próximo">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <div class="cf-dots" id="cfDots"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INSIDE LOOK VIDEO -->
+<section class="sec">
+  <div class="wrap-md">
+    <div class="eyebrow rev" data-i18n="ins_ey">Vea por dentro</div>
+    <h2 class="stitle rev" data-i18n="ins_title">El sistema en acción</h2>
+    <div id="vid2wrap" style="width:100%;border-radius:var(--rl);overflow:hidden;border:1px solid var(--bdr2);aspect-ratio:16/9;position:relative;cursor:pointer;background:#000" onclick="loadVid2()">
+      <img src="https://img.youtube.com/vi/ZXw8pZeM-_0/hqdefault.jpg" alt="AutoTrader Insider - Sistema em Ação" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.85">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+        <div style="width:72px;height:72px;background:rgba(255,0,0,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 32px rgba(0,0,0,.5)" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" style="transition:transform .2s">
+          <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+    <script>
+    function loadVid2(){
+      var w=document.getElementById('vid2wrap');
+      w.innerHTML='<iframe src="https://www.youtube.com/embed/ZXw8pZeM-_0?rel=0&modestbranding=1&autoplay=1" title="AutoTrader Insider" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%"></iframe>';
+      w.onclick=null;
+    }
+    </script>
+  </div>
+</section>
+
+<!-- ACCOUNT MANAGEMENT -->
+<section class="sec">
+  <div class="wrap">
+    <div class="mgmt-layout">
+      <div class="rev-l">
+        <div class="mgmt-pill" data-i18n="mgmt_pill">Alternativa</div>
+        <h2 class="stitle" data-i18n="mgmt_title">¿Prefieres sin costo inicial?</h2>
+        <p style="font-size:16px;color:var(--txt2);line-height:1.7;margin-bottom:20px" data-i18n="mgmt_sub">También ofrecemos <strong style="color:var(--txt)">Gestión de Cuenta Gratuita</strong>. Abres la cuenta a tu nombre, nosotros operamos directamente en ella. Sin pago inicial.</p>
+        <p style="font-size:13px;color:var(--txt3);line-height:1.6;margin-bottom:28px;padding:12px 16px;background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:8px" data-i18n="mgmt_note">Esta alternativa es explicada en detalle por el soporte en Telegram. El trading implica riesgo. Resultados no garantizados.</p>
+        <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" id="mgmtCta" class="btn-blue-out" onclick="fbq('track','Lead',{content_name:'mgmt_cta',currency:'USD',value:5})">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          <span data-i18n="mgmt_cta">Entrar al Canal</span>
+        </a>
+      </div>
+      <div class="rev-r">
+        <div class="mgmt-card">
+          <div class="mgmt-row"><span class="mgmt-lbl" data-i18n="mr1">Costo inicial</span><span class="mgmt-val" data-i18n="mr1v">$0</span></div>
+          <div class="mgmt-row"><span class="mgmt-lbl" data-i18n="mr2">Cuenta</span><span class="mgmt-val" data-i18n="mr2v">A tu nombre</span></div>
+          <div class="mgmt-row"><span class="mgmt-lbl" data-i18n="mr3">Comisión</span><span class="mgmt-val hl" data-i18n="mr3v">20% solo sobre ganancias</span></div>
+          <div class="mgmt-row"><span class="mgmt-lbl" data-i18n="mr4">Cobro</span><span class="mgmt-val" data-i18n="mr4v">Solo al retirar</span></div>
+          <div class="mgmt-row"><span class="mgmt-lbl" data-i18n="mr5">Monto recomendado</span><span class="mgmt-val" data-i18n="mr5v">$300 (mín. $100)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHORITY / COMMUNITY -->
+<section class="sec">
+  <div class="wrap-md">
+    <div class="eyebrow rev" data-i18n="auth_ey">Comunidad</div>
+    <h2 class="stitle rev" data-i18n="auth_title">Soporte, comunidad y actualizaciones</h2>
+    <p class="ssub rev" data-i18n="auth_sub">Cada miembro accede al canal VIP con actualizaciones del sistema, estrategias y soporte directo. El equipo está disponible para dudas de configuración y el sistema se actualiza continuamente.</p>
+    <div class="rev" style="width:100%;border-radius:var(--rl);overflow:hidden;border:1px solid var(--bdr)">
+      <img src="comunidade.png" alt="AutoTrader Insider Community" style="width:100%;display:block">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="wrap-md">
+    <div class="eyebrow rev" data-i18n="faq_ey">FAQ</div>
+    <h2 class="stitle rev" style="margin-bottom:36px" data-i18n="faq_title">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq1">¿Necesito experiencia en trading?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa1">No. El sistema es automatizado y los presets están listos para usar. Si puedes instalar un programa en Windows, puedes usar AutoTrader Insider.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq2">¿Funciona en MT4 y MT5?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa2">Sí. El acceso incluye ambas versiones. Solo indícanos tu plataforma preferida al hacer contacto.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq3">¿El sistema usa martingala?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa3">No. La estrategia es de hedge, con riesgo controlado por parámetros y presets predefinidos.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq4">¿Los resultados están garantizados?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa4">No. El trading siempre implica riesgo. El sistema automatiza la ejecución, pero las condiciones del mercado siempre afectan los resultados. Ningún sistema puede garantizar ganancias.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq5">¿Cómo recibo el acceso?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa5">Envías el comprobante de pago al soporte en Telegram. Tras la verificación manual, recibes los archivos, presets y acceso al canal VIP.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq6">¿Qué broker debo usar?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa6">El sistema funciona en la mayoría de brokers MT4/MT5. El soporte puede recomendarte los más probados con el sistema.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq7">¿Qué es Copy Trade?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa7">Es el bonus gratuito incluido en el acceso vitalicio: las operaciones de la cuenta master se replican automáticamente en tu cuenta.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq8">¿Qué es la Gestión de Cuenta Gratuita?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa8">Una alternativa sin costo inicial. Abres una cuenta a tu nombre, nosotros operamos directamente. Cobramos 20% sobre las ganancias solo cuando retiras. El soporte explica el proceso en detalle.</div></div></div>
+      <div class="faq-item rev"><button class="faq-btn"><span data-i18n="fq9">¿El pago se verifica manualmente?</span><span class="faq-icon">+</span></button><div class="faq-ans"><div class="faq-ans-inner" data-i18n="fa9">Sí. Todos los pagos son verificados de forma manual. El acceso se libera únicamente después de la confirmación.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec final-sec" style="padding:120px 0">
+  <div class="final-glow"></div>
+  <div class="wrap-sm" style="position:relative;z-index:1">
+    <div class="final-lbl rev" data-i18n="fin_ey">Próximo paso</div>
+    <h2 class="final-title rev" data-i18n="fin_title">Entra al canal, revisa la información y decide con más claridad.</h2>
+    <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" id="finalCta" class="btn-pri rev" style="font-size:16px;padding:18px 36px" onclick="fbq('track','Lead',{content_name:'final_cta',currency:'USD',value:5})">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      <span data-i18n="fin_cta">Entrar al Canal</span>
+    </a>
+    <div class="final-risk rev" data-i18n="fin_risk">El trading automatizado implica riesgo. Los resultados pasados no garantizan resultados futuros.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <p class="footer-disc" data-i18n="foot_disc"><strong>Aviso legal:</strong> El trading automatizado implica riesgo. Los resultados no están garantizados. Los resultados pasados no son indicativos de resultados futuros. Este software es para fines educativos e informativos únicamente.</p>
+    <p class="footer-copy">&copy; 2026 &bull; AUTOTRADER INSIDER &bull; All rights reserved.</p>
+  </div>
 </footer>
 
 <script>
+/* ====================================================
+   I18N
+==================================================== */
 var T={
-en:{free_channel:"Free Channel",get_access:"Get Lifetime Access",hero_sub:"AUTOMATION ACTIVE ON EVERY TRADE",hero_desc:"Automated trading system with instant setup and full support. Built for those who want speed, strategy and simplicity — no emotions, no complex charts. Activate the bot and let technology work for you.",hero_trust:"• 100% Secure Payment • Full Support • Instant Activation after proof of payment •",buy_now:"Get Access Now • Lifetime",join_free:"Join the Channel — Free",how_title:"EASY PURCHASE GUIDE",how_sub:"System ready for automatic operation in minutes.",step1_title:"COMPLETE PAYMENT",step1_desc:"Get your EA quickly through the site or Telegram, using a fully secure global payment platform.",step2_title:"SEND YOUR PROOF",step2_desc:"Send your payment proof directly to our Telegram support to speed up your system release.",step3_title:"INSTANT ACCESS",step3_desc:"Once processed, you instantly receive the files, all presets and exclusive access to our private group.",step4_title:"SIT BACK & RELAX",step4_desc:"Now just relax and watch your trades execute automatically in real time.",badge:"Exclusive Access • Limited Availability",plan_title:"LIFETIME ACCESS NOW",plan_sub:"One Payment · No Renewals · Instant Access",plan_sub2:"One-time · No Monthly Fees",inc1:"Secret EA robot files",inc2:"VIP preset access",inc3:"Setup guidance",inc4:"Future updates included",inc5:"Private group access",inc6:"MT4 & MT5 compatible",checkout_btn:"Go to Secure Checkout",crypto_btn:"Pay with Crypto (TRX)",join_channel_btn:"Join the Telegram Channel",after_title:"How to receive your access",after_desc:"Join our Telegram channel and talk to support to complete your purchase and receive access within 24 hours.",alt_badge:"Alternative",mgmt_title:"Prefer Account Management?",mgmt_desc:'We also offer <strong class="text-white">ACCOUNT MANAGEMENT</strong> mode. Open an account at the recommended broker and we activate the system directly on your account. You pay only <strong class="text-white">20% of profits</strong> when you withdraw. No upfront cost.',mgmt_btn:"Join Telegram to Learn More",ct_name:"Account Management",ct_sub:"Our Official Operation",ct_row1:"Account",ct_row2:"Assets",ct_row2v:"Multiple assets",ct_row3:"Commission",ct_row3v:"20% on profits",ct_row4:"Style",ct_row4v:"Aggressive",excl_badge:"EXCLUSIVE",tg_title:"WANT TO KNOW MORE?",tg_desc:"Join our Telegram group and see the bot operating live. No cost, no commitment.",tg_btn:"Join Telegram",why_label:"WHY AUTOTRADER INSIDER",why_title:"BUILT FOR<br>AUTOMATED TRADING",why_desc:"AutoTrader Insider automates entries, exits and trade management using predefined settings. You get the bot plus presets to start trading faster, without complexity or months of study.",card1_title:"Fully Automated EA",card1_desc:"Runs inside MetaTrader and executes trades based on your chosen strategy settings and presets.",card2_title:"Ready-to-Use Presets",card2_desc:"Access VIP predefined settings for different assets and styles, including safer and more aggressive options.",card3_title:"Forex, Gold & Crypto",card3_desc:"Built for multiple markets and assets, depending on preset configurations and platform conditions.",card4_title:"Risk Management Tools",card4_desc:"Use predefined parameters, lot settings and risk controls. Results always depend on market conditions and setup.",vs_title:"STILL TRADING MANUALLY?",vs_sub:"See the difference in practice",manual_label:"Manual trader",m1:"Glued to charts all day long",m2:"Trades on emotion, loses on anger",m3:"Misses opportunities while sleeping",m4:"Needs months of study first",m5:"Inconsistent results",a1:"Operates 24/7 without watching",a2:"No emotion, 100% disciplined",a3:"Captures overnight opportunities",a4:"Active in minutes, no courses needed",a5:"Tested and automatic strategy",faq_title:"FREQUENTLY ASKED QUESTIONS",faq_sub:"Everything you need to know about the automated system",faq1q:"Do I need trading experience?",faq1a:"No. Our EA is easy and automatic. If you know how to turn on a phone, you already know how to use it.",faq2q:"Does it work on MT4 and MT5?",faq2a:"Yes, perfectly. Just let us know your preferred platform and we'll send the compatible EA and presets.",faq3q:"How long does setup take?",faq3a:"Just send us the payment proof and we'll start delivery immediately.",faq4q:"Which brokers are compatible?",faq4a:"The main ones on the market. Contact us on Telegram to get the full list.",faq5q:"Do I need to keep my computer on?",faq5a:"No. Our EA runs on cloud servers via VPS. Just install it and it runs 24/7 automatically.",faq6q:"What is Account Management?",faq6a:"Our free alternative. You open an account at the recommended broker and we activate the system. The fee is 20% on results, charged only when you withdraw.",learn_more:" Learn more here.",final_title:"JOIN OUR COMMUNITY ON",final_desc:"Join Telegram and discover how simple it is to use our EA.",final_btn:"JOIN TELEGRAM",final_sub:"• Active Community • Daily Posts • Tips & Strategies •",footer_disc:"<strong>Compliance notice:</strong> Automated trading software for educational and informational purposes only. Automated trading involves risk. Results are not guaranteed."},
-es:{free_channel:"Canal Gratis",get_access:"Obtener Acceso Vitalicio",hero_sub:"AUTOMATIZACIÓN ACTIVA EN CADA OPERACIÓN",hero_desc:"Sistema de trading automatizado con configuración instantánea y soporte completo. Para quienes buscan velocidad, estrategia y simplicidad — sin emociones ni gráficos complejos.",hero_trust:"• Pago 100% Seguro • Soporte Total • Activación Inmediata tras comprobante •",buy_now:"Obtener Acceso Ahora • Vitalicio",join_free:"Unirse al Canal — Gratis",how_title:"GUÍA DE COMPRA FÁCIL",how_sub:"Sistema listo para operación automática en minutos.",step1_title:"COMPLETA EL PAGO",step1_desc:"Obtén tu EA rápidamente a través del sitio o Telegram usando una plataforma de pago global completamente segura.",step2_title:"ENVÍA TU COMPROBANTE",step2_desc:"Envía tu comprobante de pago directamente a nuestro chat de soporte en Telegram para agilizar la liberación de tu sistema.",step3_title:"ACCESO INSTANTÁNEO",step3_desc:"Una vez procesado, recibes instantáneamente los archivos, todos los presets y acceso exclusivo a nuestro grupo privado.",step4_title:"DESCANSA Y RELÁJATE",step4_desc:"Solo relájate y observa cómo tus operaciones se ejecutan automáticamente en tiempo real.",badge:"Acceso Exclusivo • Disponibilidad Limitada",plan_title:"ACCESO VITALICIO AHORA",plan_sub:"Un Pago · Sin Renovaciones · Acceso Inmediato",plan_sub2:"Pago único · Sin Mensualidad",inc1:"Archivos secretos del robot EA",inc2:"Acceso a presets VIP",inc3:"Guía de configuración",inc4:"Actualizaciones futuras incluidas",inc5:"Acceso al grupo privado",inc6:"Compatible MT4 y MT5",checkout_btn:"Ir al Checkout Seguro",crypto_btn:"Pagar con Crypto (TRX)",join_channel_btn:"Unirse al Canal de Telegram",after_title:"Cómo recibir tu acceso",after_desc:"Únete a nuestro canal de Telegram y habla con soporte para completar tu compra y recibir acceso en menos de 24 horas.",alt_badge:"Alternativa",mgmt_title:"¿Prefieres Gestión de Cuenta?",mgmt_desc:'También ofrecemos el modo <strong class="text-white">GESTIÓN DE CUENTAS</strong>. Abre una cuenta en el broker recomendado y activamos el sistema directamente en tu cuenta. Pagas solo <strong class="text-white">20% de las ganancias</strong> al retirar. Sin costo inicial.',mgmt_btn:"Únete a Telegram para Más Información",ct_name:"Gestión de Cuenta",ct_sub:"Nuestra Operación Oficial",ct_row1:"Cuenta",ct_row2:"Activos",ct_row2v:"Múltiples activos",ct_row3:"Comisión",ct_row3v:"20% sobre ganancias",ct_row4:"Estilo",ct_row4v:"Agresivo",excl_badge:"EXCLUSIVO",tg_title:"¿QUIERES SABER MÁS?",tg_desc:"Únete a nuestro grupo de Telegram y observa cómo opera el bot en vivo. Sin costo, sin compromiso.",tg_btn:"Unirse a Telegram",why_label:"POR QUÉ AUTOTRADER INSIDER",why_title:"DISEÑADO PARA<br>TRADING AUTOMATIZADO",why_desc:"AutoTrader Insider automatiza entradas, salidas y gestión de operaciones usando configuraciones predefinidas.",card1_title:"EA Totalmente Automatizado",card1_desc:"Funciona dentro de MetaTrader y ejecuta operaciones según tus configuraciones y presets elegidos.",card2_title:"Presets Listos para Usar",card2_desc:"Accede a configuraciones VIP predefinidas para diferentes activos y estilos.",card3_title:"Forex, Oro y Cripto",card3_desc:"Compatible con múltiples mercados y activos según las configuraciones y condiciones de la plataforma.",card4_title:"Herramientas de Gestión de Riesgo",card4_desc:"Usa parámetros predefinidos, configuraciones de lote y controles de riesgo.",vs_title:"¿TODAVÍA OPERANDO MANUALMENTE?",vs_sub:"Ve la diferencia en la práctica",manual_label:"Trader manual",m1:"Pegado a los gráficos todo el día",m2:"Opera con emoción, pierde por rabia",m3:"Pierde oportunidades mientras duerme",m4:"Necesita meses de estudio previo",m5:"Resultados inconsistentes",a1:"Opera 24/7 sin que lo vigiles",a2:"Sin emoción, 100% disciplinado",a3:"Captura oportunidades nocturnas",a4:"Activo en minutos, sin cursos",a5:"Estrategia probada y automática",faq_title:"PREGUNTAS FRECUENTES",faq_sub:"Todo lo que necesitas saber sobre el sistema automatizado",faq1q:"¿Necesito experiencia en trading?",faq1a:"No. Nuestra EA es fácil y automática. Si sabes encender un teléfono, ya sabes usarla.",faq2q:"¿Funciona en MT4 y MT5?",faq2a:"Sí, perfectamente. Solo indícanos tu plataforma preferida y te enviaremos la EA y presets compatibles.",faq3q:"¿Cuánto tiempo tarda la configuración?",faq3a:"Solo envíanos el comprobante de pago y comenzaremos el envío de inmediato.",faq4q:"¿Qué brokers son compatibles?",faq4a:"Los principales del mercado. Contáctanos en Telegram para recibir la lista completa.",faq5q:"¿Necesito mantener la computadora encendida?",faq5a:"No. Nuestra EA funciona en servidores en la nube vía VPS. Solo instálala y opera 24/7 automáticamente.",faq6q:"¿Qué es la Gestión de Cuenta?",faq6a:"Nuestra alternativa gratuita. Abre una cuenta en el broker recomendado, activamos el sistema. La comisión es del 20% sobre los resultados, cobrada solo al retirar.",learn_more:" Más información aquí.",final_title:"ÚNETE A NUESTRA COMUNIDAD EN",final_desc:"Únete a Telegram y descubre lo simple que es usar nuestra EA.",final_btn:"UNIRSE A TELEGRAM",final_sub:"• Comunidad Activa • Posts Diarios • Tips y Estrategias •",footer_disc:'<strong>Aviso de cumplimiento:</strong> Software de trading automatizado solo para fines educativos e informativos. El trading automatizado implica riesgos. Los resultados no están garantizados.'}
-};
-var spanishCountries=['ES','AD','MX','AR','CO','CL','PE','VE','EC','BO','PY','UY','CR','PA','DO','GT','HN','NI','SV','CU','PR'];
-var englishCountries=['GB','IE','MT','US','CA','AU','NZ'];
-var currentLang='es';
-function applyLang(lang){
-  currentLang=lang;
-  var t=T[lang];
-  document.documentElement.lang=lang;
-  document.documentElement.dir='ltr';
-  document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
-  var flags={en:'🇺🇸',es:'🇪🇸'};
-  var labels={en:'EN',es:'ES'};
-  document.getElementById('currentFlag').textContent=flags[lang];
-  document.getElementById('currentLangLabel').textContent=labels[lang];
-  document.querySelectorAll('.lang-option').forEach(function(o){o.classList.toggle('active',o.getAttribute('onclick').includes("'"+lang+"'"));});
-  var base='https://t.me/+obABDl-erLcwOGNh';
-  var tgLinks=['canalBtn','heroCanalBtn','tgMidBtn','tgFinalBtn'];
-  tgLinks.forEach(function(id){var el=document.getElementById(id);if(el)el.href=base;});
-  localStorage.setItem('ati_lang',lang);
+es:{
+  nav_cta:"Canal Gratis",
+  hero_badge:"Sistema Automatizado · MT4 y MT5",hero_h1a:"EL SISTEMA",hero_h1b:"QUE NO DUERME",
+  hero_sub:"EA con estrategia de hedge para MT4 y MT5. Presets optimizados para XAUUSD, Copy Trade gratuito y soporte de configuración. Pago único vitalicio.",
+  hero_cta1:"Entrar al Canal",hero_cta2:"Canal gratis",
+  trust1:"Pago seguro",trust2:"Verificación manual",trust3:"Soporte en Telegram",
+  vid1:"[ INSERIR VÍDEO PRINCIPAL AQUI ]",
+  ml1:"Versiones incluidas",ml2:"Presets de riesgo",ml3:"Pago único",ml4:"Operación automática",
+  pain_ey:"El problema real",pain_title:"El mayor enemigo del trader<br>no es el mercado.",
+  pain_sub:"Es la emoción. La fatiga. La decisión tomada en el momento equivocado. El sistema automatizado no tiene ninguna de las tres.",
+  pain_bad:"Trader manual",
+  pm1:"Pegado a los gráficos todo el día",pm2:"Opera con emoción, pierde con rabia",pm3:"Pierde oportunidades mientras duerme",pm4:"Necesita meses de estudio",pm5:"Resultados inconsistentes",
+  pa1:"Opera 24/7 sin que lo supervises",pa2:"Sin emoción, 100% disciplinado",pa3:"Captura oportunidades nocturnas",pa4:"Activo en minutos con presets listos",pa5:"Estrategia de hedge predefinida",
+  sol_ey:"La solución",sol_title:"Más que una EA",sol_sub:"AutoTrader Insider es un sistema completo. Recibes la herramienta y todo lo que necesitas para usarla desde el primer día.",
+  ft1:"EA para MT4 y MT5",fd1:"Ambas versiones incluidas. Instala, aplica el preset y la EA ejecuta automáticamente según la estrategia de hedge.",
+  ft2:"Setup optimizado XAUUSD",fd2:"Configuración específica para Gold / XAUUSD, el activo más probado con el sistema.",
+  ft3:"3 Presets de riesgo VIP",fd3:"Conservador, Moderado y Agresivo. Cada preset controla el riesgo por parámetros predefinidos.",
+  ft4:"Canal VIP de miembros",fd4:"Acceso al canal exclusivo con actualizaciones del sistema, estrategias y comunicación directa.",
+  ft5:"Copy Trade gratuito incluido",fd5:"Bonus incluido: las operaciones de la cuenta master se replican automáticamente en tu cuenta.",
+  ft6:"Soporte y actualizaciones vitalicias",fd6:"Soporte de configuración por Telegram y todas las actualizaciones futuras incluidas sin costo adicional.",
+  proof_ey:"Historial verificado",proof_title:"Revisa los datos<br>antes de decidir.",
+  proof_sub:"El historial de rendimiento está verificado de forma independiente por Traders Trust. Resultados pasados no garantizan resultados futuros. El trading siempre implica riesgo.",
+  ps1:"Retorno total",ps2:"Recovery factor",ps3:"Max drawdown (Agresivo)",
+  proof_btn:"Ver historial verificado",
+  proof_disc:"Cuenta verificada por Traders Trust · Modo agresivo · Resultados históricos. Los resultados pasados no son indicativos de resultados futuros. El trading implica riesgo.",
+  steps_ey:"Proceso",steps_title:"En 4 pasos simples",
+  stt1:"Elige el acceso vitalicio",std1:"Un solo plan, pago único de por vida. Sin renovaciones.",
+  stt2:"Realiza el pago",std2:"Tarjeta vía Stripe o USDT/TRX vía crypto en red TRON (TRC20).",
+  stt3:"Envía el comprobante",std3:"Comparte el hash o captura al soporte en Telegram para verificación.",
+  stt4:"Recibe tu acceso",std4:"Archivos, presets y acceso al canal VIP tras confirmación del pago.",
+  testi_ey:"Miembros",testi_title:"Lo que dicen los miembros",testi_ph:"[ INSERIR PRINT / DEPOIMENTO AQUI ]",
+  off_ey:"Oferta",off_section_title:"Un plan. Un precio.",off_pill:"Único plan disponible",off_name:"Acceso Vitalicio",
+  off_note:"Pago único · Sin renovaciones · Sin mensualidades",
+  inc1:"EA para MT4",inc2:"EA para MT5",inc3:"Setup XAUUSD",inc4:"Preset Conservador",inc5:"Preset Moderado",inc6:"Preset Agresivo",
+  inc7:"Canal VIP de miembros",inc8:"Copy Trade gratuito",inc9:"Actualizaciones vitalicias",inc10:"Cuentas ilimitadas",inc11:"Soporte de configuración",
+  off_cta:"Entrar al Canal",off_sub:"El acceso se libera tras verificación manual del pago.",
+  ins_ey:"Vea por dentro",ins_title:"El sistema en acción",ins_vid:"[ INSERIR VÍDEO MOSTRANDO O SISTEMA / AULAS / PRESETS AQUI ]",
+  mgmt_pill:"Alternativa",mgmt_title:"¿Prefieres sin costo inicial?",
+  mgmt_sub:"También ofrecemos <strong style='color:var(--txt)'>Gestión de Cuenta Gratuita</strong>. Abres la cuenta a tu nombre, nosotros operamos directamente en ella. Sin pago inicial.",
+  mgmt_note:"Esta alternativa es explicada en detalle por el soporte en Telegram. El trading implica riesgo. Resultados no garantizados.",
+  mgmt_cta:"Entrar al Canal",
+  mr1:"Costo inicial",mr1v:"$0",mr2:"Cuenta",mr2v:"A tu nombre",mr3:"Comisión",mr3v:"20% solo sobre ganancias",mr4:"Cobro",mr4v:"Solo al retirar",mr5:"Monto recomendado",mr5v:"$300 (mín. $100)",
+  auth_ey:"Comunidad",auth_title:"Soporte, comunidad y actualizaciones",
+  auth_sub:"Cada miembro accede al canal VIP con actualizaciones del sistema, estrategias y soporte directo. El equipo está disponible para dudas de configuración y el sistema se actualiza continuamente.",
+  auth_ph:"[ INSERIR FOTO / PRINT DA COMUNIDADE / AUTORIDADE AQUI ]",
+  faq_ey:"FAQ",faq_title:"Preguntas frecuentes",
+  fq1:"¿Necesito experiencia en trading?",fa1:"No. El sistema es automatizado y los presets están listos para usar. Si puedes instalar un programa en Windows, puedes usar AutoTrader Insider.",
+  fq2:"¿Funciona en MT4 y MT5?",fa2:"Sí. El acceso incluye ambas versiones. Solo indícanos tu plataforma preferida al hacer contacto.",
+  fq3:"¿El sistema usa martingala?",fa3:"No. La estrategia es de hedge, con riesgo controlado por parámetros y presets predefinidos.",
+  fq4:"¿Los resultados están garantizados?",fa4:"No. El trading siempre implica riesgo. El sistema automatiza la ejecución, pero las condiciones del mercado siempre afectan los resultados. Ningún sistema puede garantizar ganancias.",
+  fq5:"¿Cómo recibo el acceso?",fa5:"Envías el comprobante de pago al soporte en Telegram. Tras la verificación manual, recibes los archivos, presets y acceso al canal VIP.",
+  fq6:"¿Qué broker debo usar?",fa6:"El sistema funciona en la mayoría de brokers MT4/MT5. El soporte puede recomendarte los más probados con el sistema.",
+  fq7:"¿Qué es Copy Trade?",fa7:"Es el bonus gratuito incluido: las operaciones de la cuenta master se replican automáticamente en tu cuenta.",
+  fq8:"¿Qué es la Gestión de Cuenta Gratuita?",fa8:"Una alternativa sin costo inicial. Abres una cuenta a tu nombre, nosotros operamos directamente. Cobramos 20% sobre las ganancias solo cuando retiras.",
+  fq9:"¿El pago se verifica manualmente?",fa9:"Sí. Todos los pagos son verificados de forma manual. El acceso se libera únicamente después de la confirmación.",
+  fin_ey:"Próximo paso",fin_title:"Entra al canal, revisa la información y decide con más claridad.",fin_cta:"Entrar al Canal",
+  fin_risk:"El trading automatizado implica riesgo. Los resultados pasados no garantizan resultados futuros.",
+  foot_disc:"<strong>Aviso legal:</strong> El trading automatizado implica riesgo. Los resultados no están garantizados. Los resultados pasados no son indicativos de resultados futuros. Software para fines educativos e informativos únicamente."
+},
+en:{
+  nav_cta:"Free Channel",
+  hero_badge:"Automated System · MT4 & MT5",hero_h1a:"THE SYSTEM",hero_h1b:"THAT NEVER SLEEPS",
+  hero_sub:"Hedge strategy EA for MT4 and MT5. XAUUSD-optimized presets, free Copy Trade, and setup support. One-time lifetime payment.",
+  hero_cta1:"Join the Channel",hero_cta2:"Free channel",
+  trust1:"Secure payment",trust2:"Manual verification",trust3:"Telegram support",
+  vid1:"[ INSERT MAIN VIDEO HERE ]",
+  ml1:"Versions included",ml2:"Risk presets",ml3:"One-time payment",ml4:"Automated operation",
+  pain_ey:"The real problem",pain_title:"A trader's biggest enemy<br>isn't the market.",
+  pain_sub:"It's emotion. Fatigue. Decisions made in the wrong moment under stress. The automated system has none of these.",
+  pain_bad:"Manual trader",
+  pm1:"Glued to charts all day",pm2:"Trades on emotion, loses on anger",pm3:"Misses opportunities while sleeping",pm4:"Needs months of study first",pm5:"Inconsistent results",
+  pa1:"Runs 24/7 without supervision",pa2:"No emotion, 100% disciplined",pa3:"Captures overnight opportunities",pa4:"Active in minutes with ready presets",pa5:"Predefined hedge strategy",
+  sol_ey:"The solution",sol_title:"More than an EA",sol_sub:"AutoTrader Insider is a complete system. You get the tool and everything you need to use it from day one.",
+  ft1:"EA for MT4 and MT5",fd1:"Both versions included. Install, apply the preset, and the EA executes automatically using the hedge strategy.",
+  ft2:"XAUUSD optimized setup",fd2:"Specific configuration for Gold / XAUUSD, the most tested asset with the system.",
+  ft3:"3 VIP risk presets",fd3:"Conservative, Moderate, and Aggressive. Each preset controls risk through predefined parameters.",
+  ft4:"VIP members channel",fd4:"Access to the exclusive channel with system updates, strategies, and direct communication.",
+  ft5:"Free Copy Trade included",fd5:"Included bonus: master account trades are automatically mirrored to your account.",
+  ft6:"Support & lifetime updates",fd6:"Setup support via Telegram and all future updates included at no extra cost.",
+  proof_ey:"Verified track record",proof_title:"Review the data<br>before deciding.",
+  proof_sub:"Performance history is independently verified by Traders Trust. Past results do not guarantee future results. Trading always involves risk.",
+  ps1:"Total return",ps2:"Recovery factor",ps3:"Max drawdown (Aggressive)",
+  proof_btn:"View verified track record",
+  proof_disc:"Account verified by Traders Trust · Aggressive mode · Historical results. Past results are not indicative of future results. Trading involves risk.",
+  steps_ey:"Process",steps_title:"In 4 simple steps",
+  stt1:"Choose lifetime access",std1:"One plan, one-time payment for life. No renewals.",
+  stt2:"Make the payment",std2:"Card via Stripe or USDT/TRX via crypto on TRON network (TRC20).",
+  stt3:"Send the receipt",std3:"Share the hash or screenshot with Telegram support for verification.",
+  stt4:"Receive your access",std4:"Files, presets, and VIP channel access after payment confirmation.",
+  testi_ey:"Members",testi_title:"What members say",testi_ph:"[ INSERT PRINT / TESTIMONIAL HERE ]",
+  off_ey:"Offer",off_section_title:"One plan. One price.",off_pill:"The only plan available",off_name:"Lifetime Access",
+  off_note:"One-time payment · No renewals · No monthly fees",
+  inc1:"MT4 EA version",inc2:"MT5 EA version",inc3:"XAUUSD setup",inc4:"Conservative Preset",inc5:"Moderate Preset",inc6:"Aggressive Preset",
+  inc7:"VIP Members Channel",inc8:"Free Copy Trade",inc9:"Lifetime updates",inc10:"Unlimited accounts",inc11:"Setup support",
+  off_cta:"Join the Channel",off_sub:"Access is released after manual payment verification.",
+  ins_ey:"Inside look",ins_title:"The system in action",ins_vid:"[ INSERT VIDEO SHOWING SYSTEM / SETUP / PRESETS HERE ]",
+  mgmt_pill:"Alternative",mgmt_title:"Prefer no upfront cost?",
+  mgmt_sub:"We also offer <strong style='color:var(--txt)'>Free Account Management</strong>. Open the account in your name, we trade directly on it. No upfront payment.",
+  mgmt_note:"This alternative is explained in detail by support on Telegram. Trading involves risk. Results not guaranteed.",
+  mgmt_cta:"Join the Channel",
+  mr1:"Upfront cost",mr1v:"$0",mr2:"Account",mr2v:"In your name",mr3:"Commission",mr3v:"20% on profits only",mr4:"Charged",mr4v:"Only when you withdraw",mr5:"Recommended amount",mr5v:"$300 (min. $100)",
+  auth_ey:"Community",auth_title:"Support, community & updates",
+  auth_sub:"Every member gets access to the VIP channel with system updates, strategies, and direct support. The team is available for setup questions and the system is continuously updated.",
+  auth_ph:"[ INSERT PHOTO / COMMUNITY / AUTHORITY PRINT HERE ]",
+  faq_ey:"FAQ",faq_title:"Frequently asked questions",
+  fq1:"Do I need trading experience?",fa1:"No. The system is automated and presets are ready to use. If you can install a program on Windows, you can use AutoTrader Insider.",
+  fq2:"Does it work on MT4 and MT5?",fa2:"Yes. Access includes both versions. Just let us know your preferred platform when you contact us.",
+  fq3:"Does the system use martingale?",fa3:"No. The strategy is hedge-based, with risk controlled through predefined parameters and preset configurations.",
+  fq4:"Are results guaranteed?",fa4:"No. Trading always involves risk. The system automates execution, but market conditions always affect results. No system can guarantee profits.",
+  fq5:"How do I receive access?",fa5:"Send the payment proof to Telegram support. After manual verification, you receive the files, presets, and VIP channel access.",
+  fq6:"Which broker should I use?",fa6:"The system works with most MT4/MT5 brokers. Support can recommend the most tested ones.",
+  fq7:"What is Copy Trade?",fa7:"It's the free bonus included with lifetime access: master account trades are automatically mirrored to your account.",
+  fq8:"What is Free Account Management?",fa8:"A no-upfront-cost alternative. Open an account in your name, we trade directly. We charge 20% on profits only when you withdraw.",
+  fq9:"Is payment manually verified?",fa9:"Yes. All payments are manually verified. Access is released only after confirmation.",
+  fin_ey:"Next step",fin_title:"Join the channel, review the information, and decide with confidence.",fin_cta:"Join the Channel",
+  fin_risk:"Automated trading involves risk. Past results do not guarantee future results.",
+  foot_disc:"<strong>Legal notice:</strong> Automated trading involves risk. Results are not guaranteed. Past performance is not indicative of future results. Software for educational and informational purposes only."
+},
+pt:{
+  nav_cta:"Canal Grátis",
+  hero_badge:"Sistema Automatizado · MT4 e MT5",hero_h1a:"O SISTEMA",hero_h1b:"QUE NÃO DORME",
+  hero_sub:"EA com estratégia de hedge para MT4 e MT5. Presets otimizados para XAUUSD, Copy Trade gratuito e suporte de configuração. Pagamento único vitalício.",
+  hero_cta1:"Entrar no Canal",hero_cta2:"Canal grátis",
+  trust1:"Pagamento seguro",trust2:"Verificação manual",trust3:"Suporte no Telegram",
+  vid1:"[ INSERIR VÍDEO PRINCIPAL AQUI ]",
+  ml1:"Versões incluídas",ml2:"Presets de risco",ml3:"Acesso vitalício",ml4:"Operação automática",
+  pain_ey:"O problema real",pain_title:"O maior inimigo do trader<br>não é o mercado.",
+  pain_sub:"É a emoção. O cansaço. A decisão tomada no momento errado. O sistema automatizado não tem nenhum dos três.",
+  pain_bad:"Trader manual",
+  pm1:"Grudado nos gráficos o dia todo",pm2:"Opera com emoção, perde com raiva",pm3:"Perde oportunidades enquanto dorme",pm4:"Precisa de meses de estudo",pm5:"Resultados inconsistentes",
+  pa1:"Opera 24/7 sem supervisão",pa2:"Sem emoção, 100% disciplinado",pa3:"Captura oportunidades noturnas",pa4:"Ativo em minutos com presets prontos",pa5:"Estratégia de hedge predefinida",
+  sol_ey:"A solução",sol_title:"Mais que uma EA",sol_sub:"AutoTrader Insider é um sistema completo. Você recebe a ferramenta e tudo que precisa para usá-la desde o primeiro dia.",
+  ft1:"EA para MT4 e MT5",fd1:"Ambas as versões incluídas. Instale, aplique o preset e a EA executa automaticamente com a estratégia de hedge.",
+  ft2:"Setup otimizado XAUUSD",fd2:"Configuração específica para Gold / XAUUSD, o ativo mais testado com o sistema.",
+  ft3:"3 Presets de risco VIP",fd3:"Conservador, Moderado e Agressivo. Cada preset controla o risco por parâmetros predefinidos.",
+  ft4:"Canal VIP de membros",fd4:"Acesso ao canal exclusivo com atualizações do sistema, estratégias e comunicação direta.",
+  ft5:"Copy Trade gratuito incluído",fd5:"Bônus incluído: as operações da conta master são replicadas automaticamente na sua conta.",
+  ft6:"Suporte e atualizações vitalícias",fd6:"Suporte de configuração pelo Telegram e todas as atualizações futuras incluídas sem custo adicional.",
+  proof_ey:"Histórico verificado",proof_title:"Revise os dados<br>antes de decidir.",proof_sub:"",ps1:"Retorno total",ps2:"Fator de recuperação",ps3:"Max drawdown (Agressivo)",proof_btn:"Ver histórico verificado",proof_disc:"",
+  steps_ey:"Processo",steps_title:"Em 4 passos simples",
+  stt1:"Escolha o acesso vitalício",std1:"Um plano, pagamento único vitalício. Sem renovações.",
+  stt2:"Realize o pagamento",std2:"Cartão via Stripe ou USDT/TRX via cripto na rede TRON (TRC20).",
+  stt3:"Envie o comprovante",std3:"Compartilhe o hash ou print com o suporte no Telegram para verificação.",
+  stt4:"Receba seu acesso",std4:"Arquivos, presets e acesso ao canal VIP após confirmação do pagamento.",
+  testi_ey:"Membros",testi_title:"O que dizem os membros",testi_ph:"[ INSERIR PRINT / DEPOIMENTO AQUI ]",
+  off_ey:"Oferta",off_section_title:"Um plano. Um preço.",off_pill:"Único plano disponível",off_name:"Acesso Vitalício",off_note:"Pagamento único · Sem renovações · Sem mensalidades",
+  inc1:"EA para MT4",inc2:"EA para MT5",inc3:"Setup XAUUSD",inc4:"Preset Conservador",inc5:"Preset Moderado",inc6:"Preset Agressivo",
+  inc7:"Canal VIP de membros",inc8:"Copy Trade gratuito",inc9:"Atualizações vitalícias",inc10:"Contas ilimitadas",inc11:"Suporte de configuração",
+  off_cta:"Entrar no Canal",off_sub:"O acesso é liberado após verificação manual do pagamento.",
+  ins_ey:"Veja por dentro",ins_title:"O sistema em ação",ins_vid:"[ INSERIR VÍDEO DO SISTEMA AQUI ]",
+  mgmt_pill:"Alternativa",mgmt_title:"Prefere sem custo inicial?",
+  mgmt_sub:"Também oferecemos <strong style='color:var(--txt)'>Gestão de Conta Gratuita</strong>. Você abre a conta no seu nome, nós operamos diretamente nela. Sem pagamento inicial.",
+  mgmt_note:"Esta alternativa é explicada em detalhes pelo suporte no Telegram. O trading envolve risco. Resultados não garantidos.",
+  mgmt_cta:"Entrar no Canal",
+  mr1:"Custo inicial",mr1v:"$0",mr2:"Conta",mr2v:"No seu nome",mr3:"Comissão",mr3v:"20% apenas sobre lucros",mr4:"Cobrança",mr4v:"Somente ao sacar",mr5:"Valor recomendado",mr5v:"$300 (mín. $100)",
+  auth_ey:"Comunidade",auth_title:"Suporte, comunidade e atualizações",
+  auth_sub:"Cada membro acessa o canal VIP com atualizações do sistema, estratégias e suporte direto. A equipe está disponível para dúvidas de configuração e o sistema é atualizado continuamente.",
+  auth_ph:"[ INSERIR FOTO / PRINT DA COMUNIDADE AQUI ]",
+  faq_ey:"FAQ",faq_title:"Perguntas frequentes",
+  fq1:"Preciso de experiência em trading?",fa1:"Não. O sistema é automatizado e os presets estão prontos para usar. Se você consegue instalar um programa no Windows, consegue usar o AutoTrader Insider.",
+  fq2:"Funciona no MT4 e MT5?",fa2:"Sim. O acesso inclui ambas as versões. Basta indicar sua plataforma preferida ao entrar em contato.",
+  fq3:"O sistema usa martingale?",fa3:"Não. A estratégia é de hedge, com risco controlado por parâmetros e presets predefinidos.",
+  fq4:"Os resultados são garantidos?",fa4:"Não. O trading sempre envolve risco. O sistema automatiza a execução, mas as condições do mercado sempre afetam os resultados.",
+  fq5:"Como recebo o acesso?",fa5:"Envie o comprovante de pagamento para o suporte no Telegram. Após verificação manual, você recebe os arquivos, presets e acesso ao canal VIP.",
+  fq6:"Qual corretora devo usar?",fa6:"O sistema funciona na maioria das corretoras MT4/MT5. O suporte pode recomendar as mais testadas com o sistema.",
+  fq7:"O que é Copy Trade?",fa7:"É o bônus gratuito incluído: as operações da conta master são replicadas automaticamente na sua conta.",
+  fq8:"O que é Gestão de Conta Gratuita?",fa8:"Uma alternativa sem custo inicial. Você abre uma conta no seu nome, nós operamos diretamente. Cobramos 20% sobre os lucros somente quando você saca.",
+  fq9:"O pagamento é verificado manualmente?",fa9:"Sim. Todos os pagamentos são verificados manualmente. O acesso é liberado somente após a confirmação.",
+  fin_ey:"Próximo passo",fin_title:"Entre no canal, revise as informações e decida com mais clareza.",fin_cta:"Entrar no Canal",
+  fin_risk:"O trading automatizado envolve risco. Resultados passados não garantem resultados futuros.",
+  foot_disc:"<strong>Aviso legal:</strong> O trading automatizado envolve risco. Os resultados não são garantidos. Resultados passados não são indicativos de resultados futuros. Software para fins educacionais e informativos apenas."
+},
+fr:{
+  nav_cta:"Canal Gratuit",
+  hero_badge:"Système Automatisé · MT4 et MT5",hero_h1a:"LE SYSTÈME",hero_h1b:"QUI NE DORT PAS",
+  hero_sub:"EA avec stratégie de hedge pour MT4 et MT5. Presets optimisés pour XAUUSD, Copy Trade gratuit et support de configuration. Paiement unique à vie.",
+  hero_cta1:"Rejoindre le Canal",hero_cta2:"Canal gratuit",
+  trust1:"Paiement sécurisé",trust2:"Vérification manuelle",trust3:"Support Telegram",
+  vid1:"[ INSÉRER LA VIDÉO PRINCIPALE ICI ]",
+  ml1:"Versions incluses",ml2:"Presets de risque",ml3:"Accès à vie",ml4:"Opération automatique",
+  pain_ey:"Le vrai problème",pain_title:"Le plus grand ennemi du trader<br>n'est pas le marché.",
+  pain_sub:"C'est l'émotion. La fatigue. La décision prise au mauvais moment. Le système automatisé n'en souffre pas.",
+  pain_bad:"Trader manuel",
+  pm1:"Collé aux graphiques toute la journée",pm2:"Trade avec émotion, perd avec colère",pm3:"Rate des opportunités en dormant",pm4:"A besoin de mois d'étude",pm5:"Résultats inconsistants",
+  pa1:"Opère 24/7 sans supervision",pa2:"Sans émotion, 100% discipliné",pa3:"Capture les opportunités nocturnes",pa4:"Actif en minutes avec des presets prêts",pa5:"Stratégie de hedge prédéfinie",
+  sol_ey:"La solution",sol_title:"Plus qu'un EA",sol_sub:"AutoTrader Insider est un système complet. Vous recevez l'outil et tout ce dont vous avez besoin pour l'utiliser dès le premier jour.",
+  ft1:"EA pour MT4 et MT5",fd1:"Les deux versions incluses. Installez, appliquez le preset et l'EA s'exécute automatiquement avec la stratégie de hedge.",
+  ft2:"Setup optimisé XAUUSD",fd2:"Configuration spécifique pour Gold / XAUUSD, l'actif le plus testé avec le système.",
+  ft3:"3 Presets de risque VIP",fd3:"Conservateur, Modéré et Agressif. Chaque preset contrôle le risque via des paramètres prédéfinis.",
+  ft4:"Canal VIP membres",fd4:"Accès au canal exclusif avec mises à jour du système, stratégies et communication directe.",
+  ft5:"Copy Trade gratuit inclus",fd5:"Bonus inclus: les opérations du compte master sont automatiquement répliquées sur votre compte.",
+  ft6:"Support et mises à jour à vie",fd6:"Support de configuration via Telegram et toutes les mises à jour futures incluses sans frais supplémentaires.",
+  proof_ey:"Historique vérifié",proof_title:"Examinez les données<br>avant de décider.",proof_sub:"",ps1:"Rendement total",ps2:"Facteur de récupération",ps3:"Drawdown max (Agressif)",proof_btn:"Voir l'historique vérifié",proof_disc:"",
+  steps_ey:"Processus",steps_title:"En 4 étapes simples",
+  stt1:"Choisissez l'accès à vie",std1:"Un seul plan, paiement unique à vie. Sans renouvellements.",
+  stt2:"Effectuez le paiement",std2:"Carte via Stripe ou USDT/TRX via crypto sur le réseau TRON (TRC20).",
+  stt3:"Envoyez le reçu",std3:"Partagez le hash ou la capture d'écran au support Telegram pour vérification.",
+  stt4:"Recevez votre accès",std4:"Fichiers, presets et accès au canal VIP après confirmation du paiement.",
+  testi_ey:"Membres",testi_title:"Ce que disent les membres",testi_ph:"[ INSÉRER CAPTURE / TÉMOIGNAGE ICI ]",
+  off_ey:"Offre",off_section_title:"Un plan. Un prix.",off_pill:"Seul plan disponible",off_name:"Accès à Vie",off_note:"Paiement unique · Sans renouvellements · Sans mensualités",
+  inc1:"EA pour MT4",inc2:"EA pour MT5",inc3:"Setup XAUUSD",inc4:"Preset Conservateur",inc5:"Preset Modéré",inc6:"Preset Agressif",
+  inc7:"Canal VIP membres",inc8:"Copy Trade gratuit",inc9:"Mises à jour à vie",inc10:"Comptes illimités",inc11:"Support de configuration",
+  off_cta:"Rejoindre le Canal",off_sub:"L'accès est accordé après vérification manuelle du paiement.",
+  ins_ey:"Voir à l'intérieur",ins_title:"Le système en action",ins_vid:"[ INSÉRER LA VIDÉO DU SYSTÈME ICI ]",
+  mgmt_pill:"Alternative",mgmt_title:"Vous préférez sans frais initiaux?",
+  mgmt_sub:"Nous proposons aussi la <strong style='color:var(--txt)'>Gestion de Compte Gratuite</strong>. Ouvrez un compte à votre nom, nous opérons directement dessus. Sans paiement initial.",
+  mgmt_note:"Cette alternative est expliquée en détail par le support sur Telegram. Le trading implique des risques. Résultats non garantis.",
+  mgmt_cta:"Rejoindre le Canal",
+  mr1:"Coût initial",mr1v:"$0",mr2:"Compte",mr2v:"À votre nom",mr3:"Commission",mr3v:"20% sur les profits uniquement",mr4:"Facturation",mr4v:"Seulement au retrait",mr5:"Montant recommandé",mr5v:"$300 (min. $100)",
+  auth_ey:"Communauté",auth_title:"Support, communauté et mises à jour",
+  auth_sub:"Chaque membre accède au canal VIP avec mises à jour du système, stratégies et support direct. L'équipe est disponible pour les questions de configuration et le système est continuellement mis à jour.",
+  auth_ph:"[ INSÉRER PHOTO / CAPTURE DE LA COMMUNAUTÉ ICI ]",
+  faq_ey:"FAQ",faq_title:"Questions fréquentes",
+  fq1:"Ai-je besoin d'expérience en trading?",fa1:"Non. Le système est automatisé et les presets sont prêts à l'emploi. Si vous pouvez installer un programme sur Windows, vous pouvez utiliser AutoTrader Insider.",
+  fq2:"Fonctionne-t-il sur MT4 et MT5?",fa2:"Oui. L'accès inclut les deux versions. Indiquez simplement votre plateforme préférée lors du contact.",
+  fq3:"Le système utilise-t-il le martingale?",fa3:"Non. La stratégie est basée sur le hedge, avec un risque contrôlé par des paramètres et des presets prédéfinis.",
+  fq4:"Les résultats sont-ils garantis?",fa4:"Non. Le trading implique toujours des risques. Le système automatise l'exécution, mais les conditions du marché affectent toujours les résultats.",
+  fq5:"Comment puis-je recevoir l'accès?",fa5:"Envoyez la preuve de paiement au support Telegram. Après vérification manuelle, vous recevez les fichiers, presets et accès au canal VIP.",
+  fq6:"Quel broker dois-je utiliser?",fa6:"Le système fonctionne avec la plupart des brokers MT4/MT5. Le support peut recommander les plus testés avec le système.",
+  fq7:"Qu'est-ce que le Copy Trade?",fa7:"C'est le bonus gratuit inclus: les opérations du compte master sont automatiquement répliquées sur votre compte.",
+  fq8:"Qu'est-ce que la Gestion de Compte Gratuite?",fa8:"Une alternative sans frais initiaux. Vous ouvrez un compte à votre nom, nous opérons directement. Nous prélevons 20% sur les profits uniquement lors des retraits.",
+  fq9:"Le paiement est-il vérifié manuellement?",fa9:"Oui. Tous les paiements sont vérifiés manuellement. L'accès n'est accordé qu'après confirmation.",
+  fin_ey:"Prochaine étape",fin_title:"Rejoignez le canal, examinez les informations et décidez en toute clarté.",fin_cta:"Rejoindre le Canal",
+  fin_risk:"Le trading automatisé implique des risques. Les résultats passés ne garantissent pas les résultats futurs.",
+  foot_disc:"<strong>Avis légal:</strong> Le trading automatisé implique des risques. Les résultats ne sont pas garantis. Les performances passées ne sont pas indicatives des résultats futurs. Logiciel à des fins éducatives et informatives uniquement."
+},
+it:{
+  nav_cta:"Canale Gratuito",
+  hero_badge:"Sistema Automatizzato · MT4 e MT5",hero_h1a:"IL SISTEMA",hero_h1b:"CHE NON DORME",
+  hero_sub:"EA con strategia di hedge per MT4 e MT5. Preset ottimizzati per XAUUSD, Copy Trade gratuito e supporto alla configurazione. Pagamento unico a vita.",
+  hero_cta1:"Entra nel Canale",hero_cta2:"Canale gratuito",
+  trust1:"Pagamento sicuro",trust2:"Verifica manuale",trust3:"Supporto Telegram",
+  vid1:"[ INSERIRE IL VIDEO PRINCIPALE QUI ]",
+  ml1:"Versioni incluse",ml2:"Preset di rischio",ml3:"Accesso a vita",ml4:"Operazione automatica",
+  pain_ey:"Il vero problema",pain_title:"Il peggior nemico del trader<br>non è il mercato.",
+  pain_sub:"È l'emozione. La stanchezza. La decisione presa nel momento sbagliato. Il sistema automatizzato non ne soffre.",
+  pain_bad:"Trader manuale",
+  pm1:"Incollato ai grafici tutto il giorno",pm2:"Opera con emozione, perde con rabbia",pm3:"Perde opportunità mentre dorme",pm4:"Ha bisogno di mesi di studio",pm5:"Risultati incoerenti",
+  pa1:"Opera 24/7 senza supervisione",pa2:"Senza emozioni, 100% disciplinato",pa3:"Cattura opportunità notturne",pa4:"Attivo in minuti con preset pronti",pa5:"Strategia di hedge predefinita",
+  sol_ey:"La soluzione",sol_title:"Più di un EA",sol_sub:"AutoTrader Insider è un sistema completo. Ricevi lo strumento e tutto il necessario per usarlo dal primo giorno.",
+  ft1:"EA per MT4 e MT5",fd1:"Entrambe le versioni incluse. Installa, applica il preset e l'EA esegue automaticamente con la strategia di hedge.",
+  ft2:"Setup ottimizzato XAUUSD",fd2:"Configurazione specifica per Gold / XAUUSD, l'asset più testato con il sistema.",
+  ft3:"3 Preset di rischio VIP",fd3:"Conservativo, Moderato e Aggressivo. Ogni preset controlla il rischio tramite parametri predefiniti.",
+  ft4:"Canale VIP membri",fd4:"Accesso al canale esclusivo con aggiornamenti del sistema, strategie e comunicazione diretta.",
+  ft5:"Copy Trade gratuito incluso",fd5:"Bonus incluso: le operazioni del conto master vengono replicate automaticamente nel tuo conto.",
+  ft6:"Supporto e aggiornamenti a vita",fd6:"Supporto alla configurazione via Telegram e tutti gli aggiornamenti futuri inclusi senza costi aggiuntivi.",
+  proof_ey:"Storico verificato",proof_title:"Esamina i dati<br>prima di decidere.",proof_sub:"",ps1:"Rendimento totale",ps2:"Fattore di recupero",ps3:"Max drawdown (Aggressivo)",proof_btn:"Vedi lo storico verificato",proof_disc:"",
+  steps_ey:"Processo",steps_title:"In 4 semplici passi",
+  stt1:"Scegli l'accesso a vita",std1:"Un solo piano, pagamento unico a vita. Senza rinnovi.",
+  stt2:"Effettua il pagamento",std2:"Carta via Stripe o USDT/TRX via crypto sulla rete TRON (TRC20).",
+  stt3:"Invia la ricevuta",std3:"Condividi l'hash o lo screenshot al supporto Telegram per la verifica.",
+  stt4:"Ricevi il tuo accesso",std4:"File, preset e accesso al canale VIP dopo la conferma del pagamento.",
+  testi_ey:"Membri",testi_title:"Cosa dicono i membri",testi_ph:"[ INSERIRE SCREENSHOT / TESTIMONIANZA QUI ]",
+  off_ey:"Offerta",off_section_title:"Un piano. Un prezzo.",off_pill:"Unico piano disponibile",off_name:"Accesso a Vita",off_note:"Pagamento unico · Senza rinnovi · Senza canoni mensili",
+  inc1:"EA per MT4",inc2:"EA per MT5",inc3:"Setup XAUUSD",inc4:"Preset Conservativo",inc5:"Preset Moderato",inc6:"Preset Aggressivo",
+  inc7:"Canale VIP membri",inc8:"Copy Trade gratuito",inc9:"Aggiornamenti a vita",inc10:"Account illimitati",inc11:"Supporto alla configurazione",
+  off_cta:"Entra nel Canale",off_sub:"L'accesso viene sbloccato dopo la verifica manuale del pagamento.",
+  ins_ey:"Guarda dentro",ins_title:"Il sistema in azione",ins_vid:"[ INSERIRE VIDEO DEL SISTEMA QUI ]",
+  mgmt_pill:"Alternativa",mgmt_title:"Preferisci senza costi iniziali?",
+  mgmt_sub:"Offriamo anche la <strong style='color:var(--txt)'>Gestione Conto Gratuita</strong>. Apri un conto a tuo nome, noi operiamo direttamente su di esso. Senza pagamento iniziale.",
+  mgmt_note:"Questa alternativa viene spiegata in dettaglio dal supporto su Telegram. Il trading comporta rischi. Risultati non garantiti.",
+  mgmt_cta:"Entra nel Canale",
+  mr1:"Costo iniziale",mr1v:"$0",mr2:"Conto",mr2v:"A tuo nome",mr3:"Commissione",mr3v:"20% solo sui profitti",mr4:"Addebito",mr4v:"Solo al prelievo",mr5:"Importo consigliato",mr5v:"$300 (min. $100)",
+  auth_ey:"Comunità",auth_title:"Supporto, comunità e aggiornamenti",
+  auth_sub:"Ogni membro accede al canale VIP con aggiornamenti del sistema, strategie e supporto diretto. Il team è disponibile per domande sulla configurazione e il sistema viene continuamente aggiornato.",
+  auth_ph:"[ INSERIRE FOTO / SCREENSHOT DELLA COMUNITÀ QUI ]",
+  faq_ey:"FAQ",faq_title:"Domande frequenti",
+  fq1:"Ho bisogno di esperienza nel trading?",fa1:"No. Il sistema è automatizzato e i preset sono pronti all'uso. Se riesci a installare un programma su Windows, puoi usare AutoTrader Insider.",
+  fq2:"Funziona su MT4 e MT5?",fa2:"Sì. L'accesso include entrambe le versioni. Indica semplicemente la tua piattaforma preferita al contatto.",
+  fq3:"Il sistema usa il martingale?",fa3:"No. La strategia è basata sull'hedge, con rischio controllato da parametri e preset predefiniti.",
+  fq4:"I risultati sono garantiti?",fa4:"No. Il trading comporta sempre rischi. Il sistema automatizza l'esecuzione, ma le condizioni di mercato influenzano sempre i risultati.",
+  fq5:"Come ricevo l'accesso?",fa5:"Invia la prova di pagamento al supporto Telegram. Dopo la verifica manuale, ricevi i file, i preset e l'accesso al canale VIP.",
+  fq6:"Quale broker devo usare?",fa6:"Il sistema funziona con la maggior parte dei broker MT4/MT5. Il supporto può consigliare i più testati con il sistema.",
+  fq7:"Cos'è il Copy Trade?",fa7:"È il bonus gratuito incluso: le operazioni del conto master vengono replicate automaticamente nel tuo conto.",
+  fq8:"Cos'è la Gestione Conto Gratuita?",fa8:"Un'alternativa senza costi iniziali. Apri un conto a tuo nome, noi operiamo direttamente. Addebitiamo il 20% sui profitti solo quando prelevi.",
+  fq9:"Il pagamento viene verificato manualmente?",fa9:"Sì. Tutti i pagamenti vengono verificati manualmente. L'accesso viene sbloccato solo dopo la conferma.",
+  fin_ey:"Prossimo passo",fin_title:"Entra nel canale, esamina le informazioni e decidi con più chiarezza.",fin_cta:"Entra nel Canale",
+  fin_risk:"Il trading automatizzato comporta rischi. I risultati passati non garantiscono risultati futuri.",
+  foot_disc:"<strong>Avviso legale:</strong> Il trading automatizzato comporta rischi. I risultati non sono garantiti. Le performance passate non sono indicative di risultati futuri. Software solo a scopo educativo e informativo."
+},
+ru:{
+  nav_cta:"Бесплатный канал",
+  hero_badge:"Автоматизированная система · MT4 и MT5",hero_h1a:"СИСТЕМА",hero_h1b:"КОТОРАЯ НЕ СПИТ",
+  hero_sub:"EA с хеджевой стратегией для MT4 и MT5. Оптимизированные пресеты для XAUUSD, бесплатный Copy Trade и поддержка настройки. Единоразовый платёж на всю жизнь.",
+  hero_cta1:"Войти в Канал",hero_cta2:"Бесплатный канал",
+  trust1:"Безопасная оплата",trust2:"Ручная верификация",trust3:"Поддержка в Telegram",
+  vid1:"[ ВСТАВИТЬ ОСНОВНОЕ ВИДЕО ЗДЕСЬ ]",
+  ml1:"Версии включены",ml2:"Пресеты риска",ml3:"Пожизненный доступ",ml4:"Автоматическая торговля",
+  pain_ey:"Настоящая проблема",pain_title:"Главный враг трейдера —<br>не рынок.",
+  pain_sub:"Это эмоции. Усталость. Решение, принятое в неподходящий момент. Автоматизированная система лишена всего этого.",
+  pain_bad:"Ручной трейдер",
+  pm1:"Весь день прикован к графикам",pm2:"Торгует на эмоциях, теряет в гневе",pm3:"Упускает возможности во сне",pm4:"Нужны месяцы обучения",pm5:"Непоследовательные результаты",
+  pa1:"Торгует 24/7 без надзора",pa2:"Без эмоций, 100% дисциплинирован",pa3:"Захватывает ночные возможности",pa4:"Активен за минуты с готовыми пресетами",pa5:"Предустановленная хеджевая стратегия",
+  sol_ey:"Решение",sol_title:"Больше чем EA",sol_sub:"AutoTrader Insider — это полная система. Вы получаете инструмент и всё необходимое для его использования с первого дня.",
+  ft1:"EA для MT4 и MT5",fd1:"Обе версии включены. Установите, примените пресет и EA выполняет торговлю автоматически по хеджевой стратегии.",
+  ft2:"Оптимизированная настройка XAUUSD",fd2:"Специальная конфигурация для Gold / XAUUSD — самого протестированного актива с системой.",
+  ft3:"3 VIP-пресета риска",fd3:"Консервативный, Умеренный и Агрессивный. Каждый пресет управляет риском через предопределённые параметры.",
+  ft4:"VIP-канал участников",fd4:"Доступ к эксклюзивному каналу с обновлениями системы, стратегиями и прямой связью.",
+  ft5:"Бесплатный Copy Trade включён",fd5:"Бонус включён: сделки мастер-счёта автоматически копируются на ваш счёт.",
+  ft6:"Поддержка и обновления навсегда",fd6:"Поддержка настройки через Telegram и все будущие обновления включены без дополнительных затрат.",
+  proof_ey:"Подтверждённая история",proof_title:"Изучите данные<br>перед решением.",proof_sub:"",ps1:"Общая доходность",ps2:"Коэффициент восстановления",ps3:"Макс. просадка (Агрессивный)",proof_btn:"Просмотреть историю",proof_disc:"",
+  steps_ey:"Процесс",steps_title:"4 простых шага",
+  stt1:"Выберите пожизненный доступ",std1:"Один план, единоразовый платёж навсегда. Без продлений.",
+  stt2:"Произведите оплату",std2:"Картой через Stripe или USDT/TRX криптовалютой в сети TRON (TRC20).",
+  stt3:"Отправьте подтверждение",std3:"Поделитесь хешем или скриншотом в поддержку Telegram для верификации.",
+  stt4:"Получите доступ",std4:"Файлы, пресеты и доступ к VIP-каналу после подтверждения оплаты.",
+  testi_ey:"Участники",testi_title:"Что говорят участники",testi_ph:"[ ВСТАВИТЬ СКРИНШОТ / ОТЗЫВ ЗДЕСЬ ]",
+  off_ey:"Предложение",off_section_title:"Один план. Одна цена.",off_pill:"Единственный доступный план",off_name:"Пожизненный доступ",off_note:"Единоразовый платёж · Без продлений · Без ежемесячных платежей",
+  inc1:"EA для MT4",inc2:"EA для MT5",inc3:"Настройка XAUUSD",inc4:"Консервативный пресет",inc5:"Умеренный пресет",inc6:"Агрессивный пресет",
+  inc7:"VIP-канал участников",inc8:"Бесплатный Copy Trade",inc9:"Пожизненные обновления",inc10:"Неограниченные счета",inc11:"Поддержка настройки",
+  off_cta:"Войти в Канал",off_sub:"Доступ открывается после ручной проверки оплаты.",
+  ins_ey:"Взгляните внутрь",ins_title:"Система в действии",ins_vid:"[ ВСТАВИТЬ ВИДЕО СИСТЕМЫ ЗДЕСЬ ]",
+  mgmt_pill:"Альтернатива",mgmt_title:"Предпочитаете без начальных вложений?",
+  mgmt_sub:"Мы также предлагаем <strong style='color:var(--txt)'>Бесплатное управление счётом</strong>. Вы открываете счёт на своё имя, мы торгуем напрямую. Без начального платежа.",
+  mgmt_note:"Эта альтернатива подробно объясняется поддержкой в Telegram. Торговля сопряжена с риском. Результаты не гарантированы.",
+  mgmt_cta:"Войти в Канал",
+  mr1:"Начальные расходы",mr1v:"$0",mr2:"Счёт",mr2v:"На ваше имя",mr3:"Комиссия",mr3v:"20% только с прибыли",mr4:"Списание",mr4v:"Только при выводе",mr5:"Рекомендуемая сумма",mr5v:"$300 (мин. $100)",
+  auth_ey:"Сообщество",auth_title:"Поддержка, сообщество и обновления",
+  auth_sub:"Каждый участник получает доступ к VIP-каналу с обновлениями системы, стратегиями и прямой поддержкой. Команда доступна для вопросов по настройке, система постоянно обновляется.",
+  auth_ph:"[ ВСТАВИТЬ ФОТО / СКРИНШОТ СООБЩЕСТВА ЗДЕСЬ ]",
+  faq_ey:"FAQ",faq_title:"Часто задаваемые вопросы",
+  fq1:"Нужен ли опыт в трейдинге?",fa1:"Нет. Система автоматизирована, пресеты готовы к использованию. Если вы умеете устанавливать программы на Windows, вы справитесь с AutoTrader Insider.",
+  fq2:"Работает ли на MT4 и MT5?",fa2:"Да. Доступ включает обе версии. Просто укажите предпочтительную платформу при обращении.",
+  fq3:"Использует ли система мартингейл?",fa3:"Нет. Стратегия основана на хеджировании, риск контролируется предопределёнными параметрами и пресетами.",
+  fq4:"Гарантированы ли результаты?",fa4:"Нет. Торговля всегда сопряжена с риском. Система автоматизирует исполнение, но рыночные условия всегда влияют на результаты.",
+  fq5:"Как получить доступ?",fa5:"Отправьте подтверждение оплаты в поддержку Telegram. После ручной верификации получите файлы, пресеты и доступ к VIP-каналу.",
+  fq6:"Какого брокера использовать?",fa6:"Система работает с большинством брокеров MT4/MT5. Поддержка может порекомендовать наиболее протестированных.",
+  fq7:"Что такое Copy Trade?",fa7:"Бесплатный бонус: сделки мастер-счёта автоматически копируются на ваш счёт.",
+  fq8:"Что такое бесплатное управление счётом?",fa8:"Альтернатива без начальных вложений. Открываете счёт на своё имя, мы торгуем напрямую. Берём 20% с прибыли только при выводе.",
+  fq9:"Оплата проверяется вручную?",fa9:"Да. Все платежи проверяются вручную. Доступ открывается только после подтверждения.",
+  fin_ey:"Следующий шаг",fin_title:"Присоединяйтесь к каналу, изучите информацию и примите взвешенное решение.",fin_cta:"Войти в Канал",
+  fin_risk:"Автоматизированная торговля сопряжена с риском. Прошлые результаты не гарантируют будущих.",
+  foot_disc:"<strong>Правовое уведомление:</strong> Автоматизированная торговля сопряжена с риском. Результаты не гарантированы. Прошлые результаты не указывают на будущие. Программное обеспечение только в образовательных целях."
+},
+ar:{
+  nav_cta:"القناة المجانية",
+  hero_badge:"نظام آلي · MT4 و MT5",hero_h1a:"النظام",hero_h1b:"الذي لا ينام",
+  hero_sub:"مستشار خبير باستراتيجية التحوط لـ MT4 و MT5. إعدادات محسّنة لـ XAUUSD، نسخ التداول مجاناً ودعم الإعداد. دفعة واحدة مدى الحياة.",
+  hero_cta1:"الانضمام إلى القناة",hero_cta2:"القناة المجانية",
+  trust1:"دفع آمن",trust2:"تحقق يدوي",trust3:"دعم Telegram",
+  vid1:"[ أدرج الفيديو الرئيسي هنا ]",
+  ml1:"الإصدارات مشمولة",ml2:"إعدادات المخاطر",ml3:"وصول مدى الحياة",ml4:"تداول تلقائي",
+  pain_ey:"المشكلة الحقيقية",pain_title:"أكبر عدو للمتداول<br>ليس السوق.",
+  pain_sub:"إنها العاطفة. الإرهاق. القرار المتخذ في اللحظة الخاطئة. النظام الآلي لا يعاني من أيٍّ منها.",
+  pain_bad:"المتداول اليدوي",
+  pm1:"مربوط بالرسوم البيانية طوال اليوم",pm2:"يتداول بعاطفة ويخسر بغضب",pm3:"يفوّت الفرص أثناء النوم",pm4:"يحتاج أشهراً من الدراسة",pm5:"نتائج غير متسقة",
+  pa1:"يعمل 24/7 بدون إشراف",pa2:"بدون عواطف، منضبط 100%",pa3:"يلتقط فرص الليل",pa4:"نشط في دقائق مع إعدادات جاهزة",pa5:"استراتيجية تحوط محددة مسبقاً",
+  sol_ey:"الحل",sol_title:"أكثر من مجرد EA",sol_sub:"AutoTrader Insider نظام متكامل. تحصل على الأداة وكل ما تحتاجه لاستخدامها من اليوم الأول.",
+  ft1:"EA لـ MT4 و MT5",fd1:"كلا الإصدارين مشمولان. ثبّت، طبّق الإعداد والـ EA يتداول تلقائياً بحسب استراتيجية التحوط.",
+  ft2:"إعداد XAUUSD المحسّن",fd2:"تكوين خاص للذهب / XAUUSD، الأصل الأكثر اختباراً مع النظام.",
+  ft3:"3 إعدادات مخاطر VIP",fd3:"محافظ، معتدل وعدواني. كل إعداد يتحكم في المخاطر عبر معاملات محددة مسبقاً.",
+  ft4:"قناة VIP للأعضاء",fd4:"وصول إلى القناة الحصرية مع تحديثات النظام والاستراتيجيات والتواصل المباشر.",
+  ft5:"نسخ التداول المجاني مشمول",fd5:"مكافأة مشمولة: صفقات الحساب الرئيسي تُنسخ تلقائياً إلى حسابك.",
+  ft6:"دعم وتحديثات مدى الحياة",fd6:"دعم الإعداد عبر Telegram وجميع التحديثات المستقبلية مشمولة بدون تكلفة إضافية.",
+  proof_ey:"سجل موثّق",proof_title:"راجع البيانات<br>قبل القرار.",proof_sub:"",ps1:"العائد الإجمالي",ps2:"معامل الاسترداد",ps3:"أقصى سحب (عدواني)",proof_btn:"عرض السجل الموثّق",proof_disc:"",
+  steps_ey:"العملية",steps_title:"في 4 خطوات بسيطة",
+  stt1:"اختر الوصول مدى الحياة",std1:"خطة واحدة، دفعة واحدة مدى الحياة. بدون تجديدات.",
+  stt2:"أجرِ الدفع",std2:"بطاقة عبر Stripe أو USDT/TRX عبر كريبتو على شبكة TRON (TRC20).",
+  stt3:"أرسل إيصال الدفع",std3:"شارك الهاش أو لقطة الشاشة مع الدعم على Telegram للتحقق.",
+  stt4:"استلم وصولك",std4:"الملفات والإعدادات والوصول إلى قناة VIP بعد تأكيد الدفع.",
+  testi_ey:"الأعضاء",testi_title:"ما يقوله الأعضاء",testi_ph:"[ أدرج لقطة شاشة / شهادة هنا ]",
+  off_ey:"العرض",off_section_title:"خطة واحدة. سعر واحد.",off_pill:"الخطة الوحيدة المتاحة",off_name:"وصول مدى الحياة",off_note:"دفعة واحدة · بدون تجديدات · بدون رسوم شهرية",
+  inc1:"EA لـ MT4",inc2:"EA لـ MT5",inc3:"إعداد XAUUSD",inc4:"إعداد محافظ",inc5:"إعداد معتدل",inc6:"إعداد عدواني",
+  inc7:"قناة VIP للأعضاء",inc8:"نسخ التداول المجاني",inc9:"تحديثات مدى الحياة",inc10:"حسابات غير محدودة",inc11:"دعم الإعداد",
+  off_cta:"الانضمام إلى القناة",off_sub:"يُفتح الوصول بعد التحقق اليدوي من الدفع.",
+  ins_ey:"انظر من الداخل",ins_title:"النظام في العمل",ins_vid:"[ أدرج فيديو النظام هنا ]",
+  mgmt_pill:"بديل",mgmt_title:"تفضّل بدون تكاليف مبدئية؟",
+  mgmt_sub:"نقدم أيضاً <strong style='color:var(--txt)'>إدارة الحساب المجانية</strong>. تفتح الحساب باسمك ونحن نتداول مباشرة عليه. بدون دفع مسبق.",
+  mgmt_note:"يشرح الدعم على Telegram هذا البديل بالتفصيل. التداول ينطوي على مخاطر. النتائج غير مضمونة.",
+  mgmt_cta:"الانضمام إلى القناة",
+  mr1:"التكلفة المبدئية",mr1v:"$0",mr2:"الحساب",mr2v:"باسمك",mr3:"العمولة",mr3v:"20% على الأرباح فقط",mr4:"الاستحقاق",mr4v:"عند السحب فقط",mr5:"المبلغ الموصى به",mr5v:"$300 (الحد الأدنى $100)",
+  auth_ey:"المجتمع",auth_title:"الدعم، المجتمع والتحديثات",
+  auth_sub:"يحصل كل عضو على وصول إلى قناة VIP مع تحديثات النظام والاستراتيجيات والدعم المباشر. الفريق متاح للاستفسارات حول الإعداد والنظام يُحدَّث باستمرار.",
+  auth_ph:"[ أدرج صورة / لقطة المجتمع هنا ]",
+  faq_ey:"الأسئلة الشائعة",faq_title:"الأسئلة المتكررة",
+  fq1:"هل أحتاج إلى خبرة في التداول؟",fa1:"لا. النظام آلي والإعدادات جاهزة للاستخدام. إذا كنت قادراً على تثبيت برنامج على Windows، يمكنك استخدام AutoTrader Insider.",
+  fq2:"هل يعمل على MT4 و MT5؟",fa2:"نعم. يشمل الوصول كلا الإصدارين. فقط أخبرنا بمنصتك المفضلة عند التواصل.",
+  fq3:"هل يستخدم النظام المارتينجال؟",fa3:"لا. الاستراتيجية قائمة على التحوط مع مخاطر مضبوطة بمعاملات وإعدادات محددة مسبقاً.",
+  fq4:"هل النتائج مضمونة؟",fa4:"لا. التداول ينطوي دائماً على مخاطر. النظام يؤتمت التنفيذ، لكن ظروف السوق تؤثر دائماً على النتائج.",
+  fq5:"كيف أستلم وصولي؟",fa5:"أرسل إثبات الدفع إلى الدعم على Telegram. بعد التحقق اليدوي تستلم الملفات والإعدادات والوصول إلى قناة VIP.",
+  fq6:"أي وسيط يجب أن أستخدم؟",fa6:"النظام يعمل مع معظم وسطاء MT4/MT5. يمكن للدعم توصية الأكثر اختباراً مع النظام.",
+  fq7:"ما هو نسخ التداول؟",fa7:"هو المكافأة المجانية المشمولة: صفقات الحساب الرئيسي تُنسخ تلقائياً إلى حسابك.",
+  fq8:"ما هي إدارة الحساب المجانية؟",fa8:"بديل بدون تكاليف مبدئية. تفتح حساباً باسمك ونحن نتداول مباشرة. نأخذ 20% من الأرباح عند السحب فقط.",
+  fq9:"هل يُتحقق من الدفع يدوياً؟",fa9:"نعم. جميع المدفوعات تُتحقق منها يدوياً. يُفتح الوصول فقط بعد التأكيد.",
+  fin_ey:"الخطوة التالية",fin_title:"انضم إلى القناة، راجع المعلومات وقرر بوضوح أكبر.",fin_cta:"الانضمام إلى القناة",
+  fin_risk:"التداول الآلي ينطوي على مخاطر. النتائج الماضية لا تضمن النتائج المستقبلية.",
+  foot_disc:"<strong>إشعار قانوني:</strong> التداول الآلي ينطوي على مخاطر. النتائج غير مضمونة. الأداء الماضي لا يدل على النتائج المستقبلية. البرنامج لأغراض تعليمية وإعلامية فقط."
 }
-function setLang(lang){applyLang(lang);document.getElementById('langSelector').classList.remove('open');}
-function toggleLang(){document.getElementById('langSelector').classList.toggle('open');}
-document.addEventListener('click',function(e){if(!document.getElementById('langSelector').contains(e.target))document.getElementById('langSelector').classList.remove('open');});
+};
+
+var spanishCC=['ES','AD','MX','AR','CO','CL','PE','VE','EC','BO','PY','UY','CR','PA','DO','GT','HN','NI','SV','CU','PR'];
+var englishCC=['GB','IE','MT','US','CA','AU','NZ'];
+var portugueseCC=['BR','PT','AO','MZ','CV'];
+var frenchCC=['FR','BE','LU','SN','CI','CM','ML','BF','NE','GA','CG','CD','MG'];
+var italianCC=['IT','SM'];
+var russianCC=['RU','BY','KZ','KG','TJ'];
+var arabicCC=['SA','AE','EG','MA','DZ','TN','IQ','JO','KW','LB','LY','OM','QA','YE','BH'];
+var lang='es';
+
+function applyLang(l){
+  lang=l;
+  var t=T[l];
+  if(!t) return;
+  document.documentElement.lang=l;
+  document.documentElement.dir=(l==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k=el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML=t[k];
+  });
+  var flags={en:'🇺🇸',es:'🇪🇸',pt:'🇧🇷',fr:'🇫🇷',it:'🇮🇹',ru:'🇷🇺',ar:'🇸🇦'};
+  var labels={en:'EN',es:'ES',pt:'PT',fr:'FR',it:'IT',ru:'RU',ar:'AR'};
+  document.getElementById('flagEl').textContent=flags[l]||'🌐';
+  document.getElementById('langLbl').textContent=labels[l]||l.toUpperCase();
+  document.querySelectorAll('.lang-opt').forEach(function(o){
+    o.classList.toggle('active',o.getAttribute('onclick').includes("'"+l+"'"));
+  });
+  var presetEl=document.getElementById('tPreset');
+  if(presetEl){
+    var pm={es:'PRESET: MODERADO',en:'PRESET: MODERATE',pt:'PRESET: MODERADO',fr:'PRESET: MODÉRÉ',it:'PRESET: MODERATO',ru:'ПРЕСЕТ: УМЕРЕННЫЙ',ar:'الإعداد: معتدل'};
+    presetEl.textContent=pm[l]||'PRESET: MODERATE';
+  }
+  localStorage.setItem('ati_lang',l);
+}
+function setLang(l){applyLang(l);document.getElementById('langSel').classList.remove('open')}
+function toggleLang(){document.getElementById('langSel').classList.toggle('open')}
+document.addEventListener('click',function(e){
+  var sel=document.getElementById('langSel');
+  if(sel&&!sel.contains(e.target)) sel.classList.remove('open');
+});
+
+/* detect language */
 (function(){
-  document.querySelectorAll('.faq-item').forEach(function(item){item.querySelector('.faq-btn').addEventListener('click',function(){var a=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('active');});if(!a)item.classList.add('active');});});
   var saved=localStorage.getItem('ati_lang');
   if(saved&&T[saved]){applyLang(saved);return;}
-  // Prioridade 1: idioma do navegador/SO do visitante (cobre todos os idiomas configurados, ex: en-US, en-GB, es-ES, es-MX...)
-  var langList=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'']).map(function(l){return (l||'').toLowerCase();});
-  var hasEn=langList.some(function(l){return l.indexOf('en')===0;});
-  if(hasEn){applyLang('en');return;}
-  var hasEs=langList.some(function(l){return l.indexOf('es')===0;});
-  if(hasEs){applyLang('es');return;}
-  // Prioridade 2: idioma do navegador não é en nem es (comum em campanhas na Europa: fr, de, it, nl...)
-  // Padrão da campanha (Europa) é Espanhol, com fallback via IP só para confirmar países de língua inglesa
+  var ll=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'']).map(function(l){return(l||'').toLowerCase()});
+  if(ll.some(function(l){return l.indexOf('en')===0})){applyLang('en');return;}
   applyLang('es');
   fetch('https://ipapi.co/json/',{signal:AbortSignal.timeout(3000)}).then(function(r){return r.json();}).then(function(d){
-    if(englishCountries.indexOf(d.country_code)>-1)applyLang('en');
-    else if(spanishCountries.indexOf(d.country_code)>-1)applyLang('es');
+    var cc=d.country_code;
+    if(arabicCC.indexOf(cc)>-1)applyLang('ar');
+    else if(russianCC.indexOf(cc)>-1)applyLang('ru');
+    else if(italianCC.indexOf(cc)>-1)applyLang('it');
+    else if(frenchCC.indexOf(cc)>-1)applyLang('fr');
+    else if(portugueseCC.indexOf(cc)>-1)applyLang('pt');
+    else if(englishCC.indexOf(cc)>-1)applyLang('en');
+    else if(spanishCC.indexOf(cc)>-1)applyLang('es');
   }).catch(function(){});
 })();
 
-/* ===== Motion engine: reveals, hero entrance, tilt, price counter ===== */
+/* ====================================================
+   TERMINAL WIDGET
+==================================================== */
 (function(){
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Hero entrance — staged on load
-  function playHero(){
-    document.querySelectorAll('.hero-anim').forEach(function(el){
-      requestAnimationFrame(function(){ el.classList.add('in'); });
+  var trades=[
+    {type:'BUY',price:'2317.40',pnl:'+284.60',pos:true},
+    {type:'BUY',price:'2318.10',pnl:'+193.40',pos:true},
+    {type:'SELL',price:'2319.80',pnl:'+412.70',pos:true},
+    {type:'SELL',price:'2322.40',pnl:'+338.90',pos:true},
+    {type:'BUY',price:'2315.90',pnl:'+167.20',pos:true},
+    {type:'BUY',price:'2316.50',pnl:'-62.30',pos:false},
+    {type:'SELL',price:'2318.70',pnl:'+521.80',pos:true},
+    {type:'BUY',price:'2319.20',pnl:'+246.50',pos:true},
+    {type:'SELL',price:'2321.00',pnl:'+378.10',pos:true},
+    {type:'BUY',price:'2314.80',pnl:'+143.90',pos:true}
+  ];
+  var xauPrices=[2317.40,2318.15,2319.80,2316.50,2320.10,2315.90,2318.70,2321.50,2323.80,2322.40,2319.60,2317.20,2320.90];
+  var pxIdx=0;
+  var tIdx=0;
+  var current=trades.slice(0,3);
+  var net=487.60;
+  var tRows=document.getElementById('tRows');
+  var tNet=document.getElementById('tNet');
+  var xauPx=document.getElementById('xauPx');
+  if(!tRows) return;
+  function render(){
+    tRows.innerHTML='';
+    current.forEach(function(t,i){
+      var row=document.createElement('div');
+      row.className='t-row';
+      row.innerHTML='<span class="t-num">'+(i+1)+'</span>'
+        +'<span class="t-type '+t.type.toLowerCase()+'">'+t.type+'</span>'
+        +'<span class="t-price">'+t.price+'</span>'
+        +'<span class="t-pnl '+(t.pos?'pos':'neg')+'">'+t.pnl+'</span>';
+      tRows.appendChild(row);
     });
   }
-  if(document.readyState==='complete') playHero();
-  else window.addEventListener('load',playHero);
-
-  if(reduceMotion){
-    document.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('in');});
-    return;
+  function tick(){
+    var t=trades[tIdx%trades.length]; tIdx++;
+    var pnlN=parseFloat(t.pnl.replace('+',''));
+    net=Math.min(2100,Math.max(180,net+pnlN*0.38*(Math.random()>.22?1:-1)));
+    current.push(t); if(current.length>3) current.shift();
+    render();
+    if(tNet) tNet.textContent='+$'+net.toFixed(2);
   }
-
-  // Scroll reveals with per-parent stagger
-  var revealEls = document.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-right');
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        var el = entry.target;
-        var siblings = Array.prototype.filter.call(el.parentElement.children,function(c){
-          return c.classList.contains('reveal')||c.classList.contains('reveal-scale')||c.classList.contains('reveal-left')||c.classList.contains('reveal-right');
-        });
-        var idx = siblings.indexOf(el);
-        var delay = Math.min(idx,6)*0.09;
-        if(!el.style.transitionDelay || el.style.transitionDelay==='0s') el.style.transitionDelay = delay+'s';
-        el.classList.add('in');
-        io.unobserve(el);
-      }
-    });
-  },{threshold:0.15,rootMargin:'0px 0px -6% 0px'});
-  revealEls.forEach(function(el){ io.observe(el); });
-
-  // Tilt micro-interaction on cards
-  var tiltEls = document.querySelectorAll('.tilt-card');
-  tiltEls.forEach(function(card){
-    var raf=null;
-    card.addEventListener('mousemove',function(e){
-      var r = card.getBoundingClientRect();
-      var x = (e.clientX - r.left)/r.width - 0.5;
-      var y = (e.clientY - r.top)/r.height - 0.5;
-      if(raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(function(){
-        card.style.transform = 'perspective(900px) rotateX('+(-y*6)+'deg) rotateY('+(x*6)+'deg) translateY(-4px)';
-      });
-    });
-    card.addEventListener('mouseleave',function(){
-      if(raf) cancelAnimationFrame(raf);
-      card.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
-    });
-  });
-
-  // Price counter — counts up once when the plan card enters view
-  var counter = document.getElementById('priceCounter');
-  if(counter){
-    var target = parseInt(counter.getAttribute('data-target'),10) || 0;
-    var countIo = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          var start=null, duration=1100;
-          function step(ts){
-            if(!start) start=ts;
-            var p = Math.min((ts-start)/duration,1);
-            var eased = 1 - Math.pow(1-p,3);
-            counter.textContent = Math.round(eased*target);
-            if(p<1) requestAnimationFrame(step);
-          }
-          requestAnimationFrame(step);
-          countIo.unobserve(counter);
-        }
-      });
-    },{threshold:0.4});
-    countIo.observe(counter);
+  function tickPrice(){
+    pxIdx=(pxIdx+1)%xauPrices.length;
+    var px=xauPrices[pxIdx];
+    if(xauPx) xauPx.textContent=px.toFixed(2);
   }
+  render();
+  setInterval(tick,1200);
+  setInterval(tickPrice,700);
 })();
+
+/* ====================================================
+   FAQ ACCORDION
+==================================================== */
+document.querySelectorAll('.faq-item').forEach(function(item){
+  item.querySelector('.faq-btn').addEventListener('click',function(){
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('open')});
+    if(!isOpen) item.classList.add('open');
+  });
+});
+
+/* ====================================================
+   SCROLL REVEALS
+==================================================== */
+(function(){
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* hero entrance */
+  function heroIn(){document.querySelectorAll('.h-ent').forEach(function(el){requestAnimationFrame(function(){el.classList.add('in')})})}
+  if(document.readyState==='complete') heroIn(); else window.addEventListener('load',heroIn);
+
+  if(rm){document.querySelectorAll('.rev,.rev-l,.rev-r,.rev-sc').forEach(function(el){el.classList.add('in')});return;}
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el=entry.target;
+      var siblings=Array.from(el.parentElement.children).filter(function(c){return c.classList.contains('rev')||c.classList.contains('rev-l')||c.classList.contains('rev-r')||c.classList.contains('rev-sc')});
+      var idx=siblings.indexOf(el);
+      var delay=Math.min(idx,5)*0.08;
+      if(!el.style.transitionDelay||el.style.transitionDelay==='0s') el.style.transitionDelay=delay+'s';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.rev,.rev-l,.rev-r,.rev-sc').forEach(function(el){io.observe(el)});
+})();
+
+/* ====================================================
+   CLICK PARTICLES
+==================================================== */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var syms=['XAU','EA','%','+','AI','$','↑','●'];
+  document.addEventListener('click',function(e){
+    if(e.target.closest('a,button')) return;
+    for(var i=0;i<4;i++){
+      (function(delay,sym){
+        setTimeout(function(){
+          var p=document.createElement('span');
+          p.className='particle';
+          p.textContent=sym;
+          var x=e.clientX+(Math.random()-0.5)*40;
+          var y=e.clientY+(Math.random()-0.5)*20;
+          p.style.left=x+'px';
+          p.style.top=y+'px';
+          p.style.opacity=Math.random()*.6+.4+'';
+          document.body.appendChild(p);
+          setTimeout(function(){p.remove()},800);
+        },delay);
+      })(i*60,syms[Math.floor(Math.random()*syms.length)]);
+    }
+  });
+})();
+</script>
+
+<script>
+/* ====== COVERFLOW CAROUSEL ====== */
+(function(){
+  // Adicione as imagens reais aqui quando tiver os depoimentos
+  // Ex: {img:'depoimento1.jpg', name:'João Silva', txt:'Incrível, lucrei $800 no primeiro mês!'}
+  var cfItems=[
+    {img:'dep1.png',name:'Cliente',txt:'Bénéfice: +$471.66 · Balance: $5,471.66'},
+    {img:'dep2.png',name:'Cliente',txt:'Bénéfice: +$531.05 · Balance: $5,531.05'},
+    {img:'dep3.png',name:'Cliente',txt:'Lucro: +$225.52 · XAUUSD automatizado'},
+    {img:'dep4.png',name:'Cliente',txt:'+$154.47 no dia · 15 trades · Win Rate 66%'},
+    {img:'dep5.png',name:'Cliente',txt:'Profit: +$2,854.74 · Balance: $2,529.30'}
+  ];
+
+  var cfIdx=0;
+  var total=cfItems.length;
+  var wrap=document.getElementById('cfWrap');
+  var dotsEl=document.getElementById('cfDots');
+  var bgImg=document.getElementById('cfBgImg');
+  var autoTimer;
+
+  function phCard(){
+    return '<div class="cf-card-body"><div class="cf-ph-icon"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><span class="cf-ph-txt">[ INSERIR PRINT / DEPOIMENTO AQUI ]</span></div>';
+  }
+
+  function render(){
+    wrap.innerHTML='';
+    dotsEl.innerHTML='';
+    cfItems.forEach(function(item,idx){
+      var offset=(idx-cfIdx+total)%total;
+      var transform,opacity,zIndex,filter;
+      if(offset===0){transform='translateX(0) scale(1) rotateY(0deg)';opacity=1;zIndex=30;filter='brightness(1)';}
+      else if(offset===1){transform='translateX(270px) scale(.83) rotateY(-24deg)';opacity=.65;zIndex=20;filter='brightness(.75)';}
+      else if(offset===2){transform='translateX(490px) scale(.67) rotateY(-38deg)';opacity=.35;zIndex=10;filter='brightness(.5) blur(1px)';}
+      else if(offset===total-1){transform='translateX(-270px) scale(.83) rotateY(24deg)';opacity=.65;zIndex=20;filter='brightness(.75)';}
+      else if(offset===total-2){transform='translateX(-490px) scale(.67) rotateY(38deg)';opacity=.35;zIndex=10;filter='brightness(.5) blur(1px)';}
+      else{transform='translateX(0) scale(.4) rotateY(0)';opacity=0;zIndex=0;filter='brightness(.4)';}
+
+      var card=document.createElement('div');
+      card.className='cf-card';
+      card.style.cssText='transform:'+transform+';opacity:'+opacity+';z-index:'+zIndex+';filter:'+filter+';'+(offset!==0?'cursor:pointer':'cursor:default');
+      if(item.img){
+        card.innerHTML='<img src="'+item.img+'" alt="depoimento"><div class="cf-card-overlay"></div>'+(offset===0?'<div class="cf-card-body" style="opacity:1;justify-content:flex-end;padding-bottom:18px"><span style="font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.04em;background:rgba(0,0,0,.6);padding:6px 12px;border-radius:6px;backdrop-filter:blur(4px)">'+item.txt+'</span></div>':'');
+        if(bgImg&&offset===0)bgImg.src=item.img;
+      } else {
+        card.style.background='var(--bg2)';
+        card.innerHTML=(offset===0?phCard():'');
+        if(bgImg&&offset===0)bgImg.src='';
+      }
+      if(offset!==0){card.addEventListener('click',function(){cfGo(idx);});}
+      wrap.appendChild(card);
+
+      var dot=document.createElement('button');
+      dot.className='cf-dot';
+      dot.style.cssText='width:'+(idx===cfIdx?'26px':'8px')+';background:'+(idx===cfIdx?'var(--gold)':'rgba(255,255,255,.25)')+';box-shadow:'+(idx===cfIdx?'0 0 8px rgba(201,168,76,.6)':'none');
+      dot.addEventListener('click',function(){cfGo(idx);});
+      dotsEl.appendChild(dot);
+    });
+  }
+
+  function cfGo(idx){cfIdx=(idx+total)%total;render();resetAuto();}
+  function cfNext(){cfGo(cfIdx+1);}
+  function cfPrev(){cfGo(cfIdx-1);}
+
+  function resetAuto(){clearInterval(autoTimer);autoTimer=setInterval(cfNext,4500);}
+
+  document.getElementById('cfNext').addEventListener('click',function(){cfNext();});
+  document.getElementById('cfPrev').addEventListener('click',function(){cfPrev();});
+
+  // Touch swipe
+  var tsX=0;
+  wrap.addEventListener('touchstart',function(e){tsX=e.touches[0].clientX;},{passive:true});
+  wrap.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tsX;if(Math.abs(d)>45){d<0?cfNext():cfPrev();}});
+
+  render();
+  resetAuto();
+})();
+</script>
+
+<script>
+/* ====== TYPEWRITER ====== */
+var twPhrases={
+  es:["Tu dinero trabajando las 24 horas.","Opera mientras tú duermes.","Sin emociones. Sin errores humanos.","El mercado no descansa. Tu robot tampoco."],
+  en:["Your money working 24/7.","Trading while you sleep.","No emotions. No human errors.","The market never stops. Neither does your EA."],
+  pt:["Seu dinheiro trabalhando 24h por dia.","Opera enquanto você dorme.","Sem emoção. Sem erro humano.","O mercado nunca fecha. Você também não precisa."],
+  fr:["Votre argent travaille 24h/24.","Il trade pendant que vous dormez.","Sans émotion. Sans erreur humaine.","Le marché ne dort jamais. Votre robot non plus."],
+  it:["Il tuo denaro lavora 24 ore su 24.","Fa trading mentre dormi.","Nessuna emozione. Nessun errore umano.","Il mercato non dorme mai. Il tuo robot neanche."],
+  ru:["Ваши деньги работают 24/7.","Торгует, пока вы спите.","Без эмоций. Без ошибок.","Рынок не спит. Ваш робот тоже."],
+  ar:["أموالك تعمل 24 ساعة يومياً.","يتداول بينما أنت نائم.","بلا عاطفة. بلا أخطاء بشرية.","السوق لا ينام. والروبوت أيضاً."]
+};
+var twEl=document.getElementById('twTxt');
+var twIdx=0,twChar=0,twDeleting=false,twPause=0;
+function twTick(){
+  var phrases=twPhrases[lang]||twPhrases['es'];
+  var current=phrases[twIdx];
+  if(twPause>0){twPause--;setTimeout(twTick,80);return;}
+  if(!twDeleting){
+    twEl.textContent=current.substring(0,twChar+1);
+    twChar++;
+    if(twChar===current.length){twDeleting=true;twPause=28;setTimeout(twTick,80);return;}
+    setTimeout(twTick,60);
+  } else {
+    twEl.textContent=current.substring(0,twChar-1);
+    twChar--;
+    if(twChar===0){twDeleting=false;twIdx=(twIdx+1)%(phrases.length);twPause=6;setTimeout(twTick,80);return;}
+    setTimeout(twTick,35);
+  }
+}
+setTimeout(twTick,800);
+</script>
+<!-- FIXED BOTTOM CTA -->
+<div id="fixedCta" style="position:fixed;bottom:0;left:0;right:0;z-index:200;padding:12px 20px 16px;background:linear-gradient(to top,rgba(6,8,12,1) 60%,rgba(6,8,12,0));display:flex;justify-content:center;pointer-events:none;transition:opacity .3s">
+  <a href="https://t.me/+PTP47d_6mooxNTZh" target="_blank" onclick="fbq('track','Lead',{content_name:'fixed_cta',currency:'USD',value:5})"
+    style="pointer-events:auto;display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:15px 32px;border-radius:100px;box-shadow:0 4px 32px rgba(42,107,228,.6),0 0 0 1px rgba(42,107,228,.3);white-space:nowrap;text-decoration:none;transition:transform .15s,box-shadow .2s">
+    <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+    <span id="fixedCtaTxt" data-i18n="hero_cta1">Entrar al Canal</span>
+  </a>
+</div>
+<script>
+// Mostra o botão fixo só depois de rolar um pouco
+window.addEventListener('scroll',function(){
+  var el=document.getElementById('fixedCta');
+  if(window.scrollY>300){el.style.opacity='1';el.style.pointerEvents='auto';}
+  else{el.style.opacity='0';el.style.pointerEvents='none';}
+});
 </script>
 </body>
 </html>
